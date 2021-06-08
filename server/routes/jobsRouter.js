@@ -5,7 +5,7 @@ const jobsController = require('../controllers/jobsController');
 const router = express.Router();
 
 // route handler for viewing all jobs
-router.get('/', (req, res) => {
+router.get('/', jobsController.getJobs, (req, res) => {
   res.status(200).json({});
 });
 

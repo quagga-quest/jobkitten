@@ -5,7 +5,7 @@ const achievementsController = require('../controllers/achievementsController');
 const router = express.Router();
 
 // route handler for viewing all achievements
-router.get('/', (req, res) => {
+router.get('/', achievementsController.getAchievements, (req, res) => {
   res.status(200).json({});
 });
 

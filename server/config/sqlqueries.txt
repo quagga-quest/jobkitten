@@ -1,14 +1,14 @@
 create table queries
 
 CREATE TABLE Users (
-    user_id int,
+    user_id varchar(255),
     first_name1 varchar(255),
     last_name1 varchar(255),
     username varchar(255),
     email varchar(255),
 	profile_image varchar(255),
     display_name_1 varchar(255),
-    oauth_id int
+    oauth_id varchar(255)
 )
 
 

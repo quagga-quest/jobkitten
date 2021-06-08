@@ -1,0 +1,36 @@
+create table queries
+
+CREATE TABLE Users (
+    user_id int,
+    first_name1 varchar(255),
+    last_name1 varchar(255),
+    username varchar(255),
+    email varchar(255),
+	profile_image varchar(255),
+    display_name_1 varchar(255),
+    oauth_id int
+)
+
+
+CREATE TABLE Jobs (
+    job_id int,
+    user_id varchar(255),
+    status varchar(255),
+    job_title varchar(255),
+    company varchar(255),
+    reachout_out BOOL,
+    resume_link varchar(255),
+    cover_letter_link varchar(255),
+    follow_up BOOL,
+    submit_application BOOL,
+    phone_screen BOOL,
+    technical_interview BOOL,
+    on_site BOOL,
+    take_home BOOL,
+    interview_follow_up BOOL
+);
+
+CREATE TABLE Achievements (
+achievement_type varchar(255),
+user_id
+)

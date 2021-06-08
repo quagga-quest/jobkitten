@@ -1,5 +1,5 @@
 const jobsController = {};
-const db = require('../models/JobsModel');
+const db = require('../models/dbModel');
 
 // middleware to retrieve all existing jobs from database and send back to client as JSON
 jobsController.getJobs = async (req, res, next) => {

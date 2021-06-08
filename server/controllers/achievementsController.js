@@ -1,5 +1,5 @@
 const achievementsController = {};
-const db = require('../models/JobsModel');
+const db = require('../models/dbModel');
 
 // middleware for retrieving all achievements from database
 achievementsController.getAchievements = async (req, res, next) => {

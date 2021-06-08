@@ -1,7 +1,25 @@
 const express = require('express');
 const path = require('path');
-const PORT = 3000;
+// please keep this port set to 3333. There is a local issue with using 3000 for Jenessa. Thanks :) 
+const PORT = 3333;
 const app = express();
+const passport = require("passport");
+const keys = require("./config/keys");
+const passportSetup = require('./config/passport-setup');
+const cookieSession = require('cookie-session');
+const authRoutes = require('./routes/authRoutes.js');
+
+
+app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [keys.session.cookieKey]
+  }))
+
+  //initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/auth' , authRoutes)
 
 // require routers
 const userRouter = require('./routes/userRouter.js');

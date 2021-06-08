@@ -1,4 +1,5 @@
 const express = require('express');
+const achievementsController = require('../controllers/achievementsController');
 
 const userController = require('../controllers/userController');
 
@@ -11,6 +12,10 @@ router.post('/signup', (req, res) => {
 
 // route handler for logging in
 router.post('/login', (req, res) => {
+  res.status(200).json({});
+});
+
+router.put('/update', userController.updateUser, achievementsController.checkAchievements, achievementsController.addAchievement, (req, res) => {
   res.status(200).json({});
 });
 

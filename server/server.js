@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+// please keep this port set to 3333. There is a local issue with using 3000 for Jenessa. Thanks :) 
 const PORT = 3333;
 const app = express();
 const passport = require("passport");

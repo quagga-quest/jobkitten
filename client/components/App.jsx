@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import ApplicationDetails from './ApplicationDetails.jsx'
 
 class App extends Component {
     render(){
         return(
-            <h1>header from React</h1>
+            <div>
+              <h1>header from React</h1>
+              <ApplicationDetails />
+            </div>
         )
     }
 }

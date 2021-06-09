@@ -96,11 +96,11 @@ const App = () => {
                     {/* <Route path='/jobs/:job_id'>
                       <h3>Application details</h3>
                     </Route> */}
-                    <Route path='/appdetails'>
+                    <Route path='/appdetails/:job_id'>
                       {/* will need to pass jobID + status as a prop to this */}
                       <ApplicationDetails />
                     </Route>
-                    <Route path='/intdetails'>
+                    <Route path='/intdetails/:job_id'>
                       {/* will need to pass jobID + status as a prop to this */}
                       <InterviewDetails />
                     </Route>

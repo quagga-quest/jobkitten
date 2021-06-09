@@ -9,7 +9,12 @@ const ApplicationBox = (props) => {
         e.preventDefault;
         props.setActiveAppBox(props.jobId)
         console.log('job id', props.jobId)
-        history.push(`jobs/${props.jobId}`);
+        // props.status ? history.push(`jobs/${props.jobId}`);
+        // switch(props.status) {
+        //     case ('interested' || 'inPropgress' || 'completed') {
+        //         history.push(`jobs/${props.jobId}`)
+        //     }
+        // }
     }
   
     function deleteBox(e){

@@ -4,7 +4,10 @@ const ApplicationBox = (props) => {
     return (
     <a href = "">
         <div className = "app-box">
-            click me!
+            <ul>
+                <li>Job title: {props.jobTitle}</li>
+                <li>Company: {props.company}</li>
+            </ul>
         </div>
     </a>
     )

@@ -1,7 +1,17 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
+
 
 const ApplicationBox = (props) => {
+    const history = useHistory();
 
+    function clickBox(e){
+        e.preventDefault;
+        props.setActiveAppBox(props.jobId)
+        console.log('job id', props.jobId)
+        history.push(`jobs/${props.jobId}`);
+    }
+  
     function deleteBox(e){
         e.preventDefault();
         const list = [...props.list];
@@ -19,12 +29,10 @@ const ApplicationBox = (props) => {
             props.action([...list]);
           })
           .catch((e) => console.log(e))
-
-
-
     }
+
     return (
-    <a href = "">
+    <a href = '#' id='redirect' onClick={(e) => clickBox(e)}>
         <div className = "app-box">
             <button type="button" onClick={(e) => deleteBox(e)}>X</button>
             <ul>

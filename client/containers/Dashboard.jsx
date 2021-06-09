@@ -8,15 +8,30 @@ const Dashboard = (props) => {
         <div id='dashboard'>
             <div className='application-section' id='dashboard-section-three'>
               <h5>Interview stage</h5>
-              <ApplicationSection id={1} list={props.interview} action={props.setInterview} />
+              <ApplicationSection 
+              id={1} 
+              list={props.interview} 
+              action={props.setInterview}
+              activeAppBox={props.activeAppBox} 
+              setActiveAppBox={props.setActiveAppBox} />
             </div>
             <div className='application-section' id='dashboard-section-two'>
               <h5>Applications in progress</h5>
-              <ApplicationSection id={2} list={props.inProgress} action={props.setInProgress}/>
+              <ApplicationSection 
+              id={2} 
+              list={props.inProgress} 
+              action={props.setInProgress}
+              activeAppBox={props.activeAppBox} 
+              setActiveAppBox={props.setActiveAppBox}/>
             </div>
             <div className='application-section' id='dashboard-section-one'>
               <h5>Jobs I'm interested in</h5>
-              <ApplicationSection id={3} list={props.interested} action={props.setInterested}/>
+              <ApplicationSection 
+              id={3} 
+              list={props.interested} 
+              action={props.setInterested} 
+              activeAppBox={props.activeAppBox} 
+              setActiveAppBox={props.setActiveAppBox}/>
             </div>
         </div>
     )

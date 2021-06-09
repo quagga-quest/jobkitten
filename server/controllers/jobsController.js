@@ -2,7 +2,7 @@ const jobsController = {};
 const db = require('../models/dbModel');
 
 // middleware to retrieve all existing jobs from database and send back to client as JSON
-jobsController.getJobs = async (req, res, next) => {
+jobsController.getAllJobs = async (req, res, next) => {
   // adjust these as necessary
   const user_id = [ req.body.user_id ];
   const getJobsQuery = 'SELECT * FROM Jobs WHERE Jobs._id = $1';
@@ -14,6 +14,10 @@ jobsController.getJobs = async (req, res, next) => {
     console.log(error.stack);
     return next(error);
   }
+};
+
+jobsController.getOneJob = async (req, res, next) => {
+  // TBD
 };
 
 // middleware to create new job in database
@@ -56,13 +60,12 @@ jobsController.updateJob = async (req, res, next) => {
 // middleware to delete an existing job based on job_id
 jobsController.deleteJob = async (req, res, next) => {
   // adjust these as necessary
-  const job_id = [ req.body.job_id ];
-  const deleteJobQuery = 'DELETE FROM Jobs WHERE Jobs._id = $1';
+  const job_id = [ req.params.job_id ];
+  const deleteJobQuery = 'DELETE FROM Jobs WHERE jobs.job_id = $1';
 
   try {
     await db.query(deleteJobQuery, job_id);
-    // is the below necessary? talk to front end
-    res.locals.response = await db.query('SELECT * FROM Jobs');
+    res.locals.response = `Deleted job ${job_id}`;
   } catch (error) {
     console.log(error.stack);
     return next(error);

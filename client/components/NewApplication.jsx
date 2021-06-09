@@ -13,7 +13,7 @@ const NewApplication = (props) => {
           status: 'interested'
         }
 
-      fetch('http://localhost:3333/jobs/add', {
+      fetch(`http://localhost:3333/jobs/add/${props.user_id}`, {
           method: 'POST',
           mode: 'cors',
           body: body

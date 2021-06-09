@@ -7,7 +7,7 @@ const userController = require('../controllers/userController');
 const router = express.Router();
 
 // route handler for viewing all jobs
-router.get('/', jobsController.getJobs, (req, res) => {
+router.get('/', jobsController.getAllJobs, (req, res) => {
   res.status(200).json({});
 });
 
@@ -22,8 +22,8 @@ router.put('/update', userController.updateUser, achievementsController.checkAch
 });
 
 // route handler for removing an existing job
-router.delete('/remove', (req, res) => {
-  res.status(200).json({});
+router.delete('/remove/:job_id', jobsController.deleteJob, (req, res) => {
+  res.status(200).json(res.locals.response);
 });
 
 module.exports = router;

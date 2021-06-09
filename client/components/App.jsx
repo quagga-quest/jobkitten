@@ -5,6 +5,7 @@ import Dashboard from '../containers/Dashboard.jsx';
 import NewApplication from './NewApplication.jsx';
 import ApplicationDetails from '../containers/ApplicationDetails.jsx';
 import InterviewDetails from '../containers/InterviewDetails.jsx';
+import AchievementsContainer from '../containers/AchievementsContainer.jsx';
 
 const App = () => {
     
@@ -62,6 +63,9 @@ const App = () => {
                       <li>
                           <Link to='/intdetails'> View interview details</Link>
                       </li>
+                      <li>
+                          <Link to='/achievements'> View achievements</Link>
+                      </li>
                     </ul>
                   </nav>
 
@@ -89,6 +93,9 @@ const App = () => {
                     <Route path='/intdetails'>
                       {/* will need to pass jobID + status as a prop to this */}
                       <InterviewDetails />
+                    </Route>
+                    <Route path='/achievements'>
+                      <AchievementsContainer />
                     </Route>
                   </Switch>
                 </BrowserRouter>

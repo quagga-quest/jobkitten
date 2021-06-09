@@ -10,7 +10,7 @@ const TaskBadgeDisplay = (props) => {
       <div>
         <h2>Keep Going!</h2>
         <div>
-          <img src="assets/icon.png" />
+          <img src="../../assets/question-mark.png" style={{height: "100px", width: "100px"}}/>
         </div>
       </div>
     )

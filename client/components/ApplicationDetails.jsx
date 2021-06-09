@@ -53,7 +53,8 @@ const ApplicationDetails = (props) => {
 
   return (
     <div style={{display: "flex", flexDirection: "column", height: "100%"}}>
-      {/* need to add in the job title + company as headers */}
+      <h1>Job Title</h1>
+      <h3>Company</h3>
       <BadgeContainer appStatus={taskStatus} />
       <TaskContainer taskStatus={taskStatus} setTaskStatus={setTaskStatus} handleSubmit={handleSubmit} />
     </div>

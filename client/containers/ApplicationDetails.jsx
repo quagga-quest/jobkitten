@@ -51,6 +51,8 @@ const ApplicationDetails = (props) => {
     //   },
     //   body: JSON.stringify(inputData)
     // }
+
+    // fetch('/jobs/update/id', requestOptions)
   }
 
   // TBD: useEffect that listens for taskStatus changing state and executes a post request to update 

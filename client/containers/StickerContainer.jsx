@@ -2,7 +2,7 @@ import React from 'react';
 import StickerBox from '../components/StickerBox.jsx'
 
 const StickerContainer = (props) => {
-
+  // props to pass: image URL, whether the achievement has been achieved
 
   return (
     <div style={{display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gridTemplateRows: "repeat(10, 1fr)"}}>

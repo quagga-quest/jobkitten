@@ -2,12 +2,8 @@ import React from 'react';
 import TaskItem from '../components/TaskItem.jsx';
 
 const TaskContainer = (props) => {
-  
-
-  
 
   const taskList = [];
-  console.log("props taskStatus", props)
   Object.keys(props.taskStatus).forEach((task) => {
     taskList.push(
       <TaskItem

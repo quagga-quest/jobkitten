@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import TaskBadgeDisplay from '../components/TaskBadgeDisplay.jsx';
 import TaskContainer from './TaskContainer.jsx';
+import AddInterviewTask from '../components/AddInterviewTask.jsx'
 
-const ApplicationDetails = (props) => {
+const InterviewDetails = (props) => {
   // need to pass down jobID, jobName, jobCompany as props from the dashboard view
-  const [taskStatus, setTaskStatus] = useState({
-    task1: null,
-    task2: "www.fun.com",
-    task3: true,
-    task4: null,
-    task5: null
-  });
+  const [intTaskStatus, setIntTaskStatus] = useState({});
 
   const [appStatus, setAppStatus] = useState("in progress");
   // statuses
@@ -30,13 +25,43 @@ const ApplicationDetails = (props) => {
   // })
 
   // update taskStatus state based on task form submissions (this is invoked in TaskItem)
-  const handleSubmit = event => {
+  const handleAdd = event => {
     event.preventDefault();
-    const taskCopy = taskStatus;
+    const taskDisplay = {
+      phone_screen: 'Recruiter Phone Screen',
+      technical_interview: 'Technical Phone Interview',
+      take_home: 'Take-Home Assessment',
+      on_site: 'On-Site Interview',
+      interview_follow_up: 'Interview Follow-up'
+    }
+    const taskCopy = intTaskStatus;
+    const taskName = taskDisplay[event.target.interviewSteps.value];
+    taskCopy[taskName] = 0;
+    setIntTaskStatus({...taskCopy});
+
+    // post request to update task upon submission
+    const bodyData = {
+      [taskName]: 0 
+    };
+    console.log('bodyData', bodyData);
+
+    // const requestOptions = {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(inputData)
+    // }
+  }
+
+   // update taskStatus state based on task form submissions (this is invoked in TaskItem)
+   const handleSubmit = event => {
+    event.preventDefault();
+    const taskCopy = intTaskStatus;
     const taskName = event.target.id;
     const inputData = event.target.inputData.value;
     taskCopy[taskName] = inputData;
-    setTaskStatus({...taskCopy});
+    setIntTaskStatus({...taskCopy});
 
     // post request to update task upon submission
     const bodyData = {
@@ -53,6 +78,7 @@ const ApplicationDetails = (props) => {
     // }
   }
 
+
   // TBD: useEffect that listens for taskStatus changing state and executes a post request to update 
   // useEffect(() => {
 
@@ -62,10 +88,11 @@ const ApplicationDetails = (props) => {
     <div style={{display: "flex", flexDirection: "column", height: "100%"}}>
       <h1>Job Title</h1>
       <h3>Company</h3>
-      <TaskBadgeDisplay appStatus={appStatus} incomplete={["interested", "in progress"]}/>
-      <TaskContainer taskStatus={taskStatus} setTaskStatus={setTaskStatus} handleSubmit={handleSubmit} />
+      <TaskBadgeDisplay appStatus={appStatus} incomplete={["interested", "in progress", "completed", "interview"]}/>
+      <TaskContainer taskStatus={intTaskStatus} setTaskStatus={setIntTaskStatus} handleSubmit={handleSubmit}/>
+      <AddInterviewTask handleAdd={handleAdd} />
     </div>
   )
 }
 
-export default ApplicationDetails
+export default InterviewDetails

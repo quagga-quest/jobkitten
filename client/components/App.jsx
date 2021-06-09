@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import Completed from '../containers/Completed.jsx';
 import Dashboard from '../containers/Dashboard.jsx';
 import NewApplication from './NewApplication.jsx';
+import ApplicationDetails from '../containers/ApplicationDetails.jsx'
 
 const App = () => {
     
@@ -54,6 +55,9 @@ const App = () => {
                       <li>
                           <Link to='add'> Add new application</Link>
                       </li>
+                      <li>
+                          <Link to='/appdetails'> View app details</Link>
+                      </li>
                     </ul>
                   </nav>
 
@@ -73,6 +77,10 @@ const App = () => {
                     </Route>
                     <Route path='/add'>
                       <NewApplication interested={interested} setInterested={setInterested}/>
+                    </Route>
+                    <Route path='/appdetails'>
+                      {/* will need to pass jobID + status as a prop to this */}
+                      <ApplicationDetails />
                     </Route>
                   </Switch>
                 </BrowserRouter>

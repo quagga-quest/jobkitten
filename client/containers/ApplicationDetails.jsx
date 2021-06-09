@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import BadgeContainer from './BadgeContainer.jsx';
+import TaskBadgeDisplay from '../components/TaskBadgeDisplay.jsx';
 import TaskContainer from './TaskContainer.jsx';
 
 const ApplicationDetails = (props) => {
@@ -55,7 +55,7 @@ const ApplicationDetails = (props) => {
     <div style={{display: "flex", flexDirection: "column", height: "100%"}}>
       <h1>Job Title</h1>
       <h3>Company</h3>
-      <BadgeContainer appStatus={taskStatus} />
+      <TaskBadgeDisplay appStatus={taskStatus} />
       <TaskContainer taskStatus={taskStatus} setTaskStatus={setTaskStatus} handleSubmit={handleSubmit} />
     </div>
   )

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BadgeContainer = () => {
+const TaskBadgeDisplay = () => {
 
   // props needed:
   // app status
@@ -28,11 +28,12 @@ const BadgeContainer = () => {
     )
   }
   
+  // add logic to conditionally render complete vs. incomplete views
   return (
     <div style={{display: "flex", flexDirection: "column", border: "solid 1px black"}}>
-      
+      {incompleteView()}
     </div>
   )
 }
 
-export default BadgeContainer;
+export default TaskBadgeDisplay;

@@ -1,5 +1,5 @@
 import React from 'react';
-import TaskItem from './TaskItem.jsx';
+import TaskItem from '../components/TaskItem.jsx';
 
 const TaskContainer = (props) => {
   

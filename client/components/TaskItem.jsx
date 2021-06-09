@@ -17,23 +17,29 @@ const TaskItem = (props) => {
     return (
       <form id={props.name} onSubmit={()=>props.handleSubmit(event)}>
         <input id="inputData" type="text"></input>
-        <button type="submit">Submit</button>
+        <button type="submit" style={{marginLeft: "10px"}}>Submit</button>
       </form>
     )
   }
 
   const completeView = () => {
+    let displayText;
+    if(typeof props.status === 'boolean') displayText = "Complete";
+    else displayText = `Complete: ${props.status}`;
+
     return (
       <div>
-        Complete: {props.status}
+        {displayText}
       </div>
     )
   }
 
   return (
-    <div display="flex" flexDirection="row" border="black 1px solid">
-      <img src="assets/icon.png" />
-      <h2>{props.name}</h2>
+    <div style={{display: "flex", flexDirection: "row", border: "black 1px solid", alignItems: "center"}}>
+      <div style={{marginLeft: "10px"}}>
+        <img src="assets/icon.png" />
+      </div>
+      <h2 style={{marginLeft: "10px", marginRight: "10px"}}>{props.name}</h2>
       { !props.status ? (
         incompleteView()
       ) : (

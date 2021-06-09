@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TaskBadgeDisplay = () => {
+const TaskBadgeDisplay = (props) => {
 
   // props needed:
   // app status
@@ -10,7 +10,7 @@ const TaskBadgeDisplay = () => {
       <div>
         <h2>Keep Going!</h2>
         <div>
-          <img src="assets/icon.png" />
+          <img src="../../assets/question-mark.png" style={{height: "100px", width: "100px"}}/>
         </div>
       </div>
     )
@@ -28,10 +28,24 @@ const TaskBadgeDisplay = () => {
     )
   }
   
+    // statuses
+  // interested
+  // in progress
+  // completed
+  // interview
+  // rejected
+  // hired
+
+  const incompleteArr = props.incomplete;
+
   // add logic to conditionally render complete vs. incomplete views
   return (
     <div style={{display: "flex", flexDirection: "column", border: "solid 1px black"}}>
-      {incompleteView()}
+      { incompleteArr.includes(props.appStatus)  ? (
+        incompleteView()
+      ) : (
+        completeView()
+      )}
     </div>
   )
 }

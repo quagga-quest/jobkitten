@@ -14,6 +14,7 @@ const TaskContainer = (props) => {
         name={task}
         status={props.taskStatus[task]}
         setTaskStatus={props.setTaskStatus}
+        handleSubmit={props.handleSubmit}
         key={task}
       />
     )

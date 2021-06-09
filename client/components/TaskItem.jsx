@@ -7,16 +7,17 @@ const TaskItem = (props) => {
   
   // event listener onClick will update state, which will trigger the useEffect to do a post request
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    setTaskStatus(taskStatus[props.name] = document.getElementById(inputData).value);
-  }
+  // const handleSubmit = event => {
+  //   event.preventDefault();
+  //   setTaskStatus(props.status[props.name] = document.getElementById('inputData').value);
+  //   console.log("taskStatus from TI", props);
+  // }
 
   const incompleteView = () => {
     return (
-      <form>
+      <form id={props.name} onSubmit={()=>props.handleSubmit(event)}>
         <input id="inputData" type="text"></input>
-        <button type="submit" onSubmit={handleSubmit}>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     )
   }

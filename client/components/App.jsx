@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import Completed from '../containers/Completed.jsx';
 import Dashboard from '../containers/Dashboard.jsx';
+import NewApplication from './NewApplication.jsx';
 
 const App = () => {
     
@@ -50,22 +51,28 @@ const App = () => {
                       <li>
                         <Link to='/completed'> Completed applications</Link>
                       </li>
+                      <li>
+                          <Link to='add'> Add new application</Link>
+                      </li>
                     </ul>
                   </nav>
 
                   <Switch>
                     <Route path='/dashboard'>
                       <Dashboard 
-                        interested={interested}
-                        inProgress={inProgress}
-                        interview={interview} 
+                        interested={interested} setInterested={setInterested}
+                        inProgress={inProgress} setInProgress={setInProgress}
+                        interview={interview} setInterview={setInterview}
                         />
                     </Route>
                     <Route path='/completed'>
                       <Completed 
-                        completed={completed}
-                        rejected={rejected}
+                        completed={completed} setCompleted={setCompleted}
+                        rejected={rejected} setRejected={setRejected}
                         />
+                    </Route>
+                    <Route path='/add'>
+                      <NewApplication interested={interested} setInterested={setInterested}/>
                     </Route>
                   </Switch>
                 </BrowserRouter>

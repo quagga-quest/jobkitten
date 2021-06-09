@@ -9,12 +9,14 @@ const ApplicationSection = (props) => {
     const listOfApplications = [];
     const copy = [...props.list];
     copy.forEach(el => {
-        listOfApplications.push( <ApplicationBox 
+        listOfApplications.push( < ApplicationBox 
                       jobId = {`${el.job_id}`}
                       jobTitle = {`${el.job_title}`}
                       company = {`${el.company}`}
                       jobPosting = {`${el.job_posting}`}
-                      status = {`${status}`} />)
+                      status = {`${status}`} 
+                      action = {props.action}
+                      list={props.list} />)
     })
 
     return (

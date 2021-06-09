@@ -21,4 +21,5 @@ body {
     padding: 10px;
     max-width: fit-content;
     max-height: fit-content;
+    float: left;
 }

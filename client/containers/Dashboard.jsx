@@ -5,16 +5,18 @@ import ApplicationBox from '../components/ApplicationBox.jsx';
 
 const Dashboard = (props) => {
     return (
-        // <ApplicationSection />
         <div id='dashboard'>
-            <div className='application-section' id='dashboard-section-one'>
-              <ApplicationSection id={1} list={props.interested}/>
+            <div className='application-section' id='dashboard-section-three'>
+              <h5>Interview stage</h5>
+              <ApplicationSection id={1} list={props.interview} action={props.setInterview} />
             </div>
             <div className='application-section' id='dashboard-section-two'>
-              <ApplicationSection id={2} list={props.inProgress}/>
+              <h5>Applications in progress</h5>
+              <ApplicationSection id={2} list={props.inProgress} action={props.setInProgress}/>
             </div>
-            <div className='application-section' id='dashboard-section-three'>
-              <ApplicationSection id={3} list={props.interview}/>
+            <div className='application-section' id='dashboard-section-one'>
+              <h5>Jobs I'm interested in</h5>
+              <ApplicationSection id={3} list={props.interested} action={props.setInterested}/>
             </div>
         </div>
     )

@@ -11,13 +11,18 @@ router.get('/', jobsController.getAllJobs, (req, res) => {
   res.status(200).json({});
 });
 
+// route handler for viewing a single job that's been clicked on
+router.get('/:job_id', jobsController.getOneJob, (req, res) => {
+  res.status(200).json({});
+});
+
 // route handler for adding a new job
-router.post('/add', userController.updateUser, achievementsController.checkAchievements, achievementsController.addAchievement, (req, res) => {
+router.post('/add/:user_id', jobsController.postJob, userController.updateUser, achievementsController.checkAchievements, achievementsController.addAchievement, (req, res) => {
   res.status(200).json({});
 });
 
 // route handler for updating an existing job
-router.put('/update', userController.updateUser, achievementsController.checkAchievements, achievementsController.addAchievement, (req, res) => {
+router.put('/update/:job_id', jobsController.updateJob, jobsController.updateJobStatus, userController.updateUser, achievementsController.checkAchievements, achievementsController.addAchievement, (req, res) => {
   res.status(200).json({});
 });
 

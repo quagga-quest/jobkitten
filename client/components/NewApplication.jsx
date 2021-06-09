@@ -7,13 +7,14 @@ const NewApplication = (props) => {
       const company = document.getElementById('input-company').value;
       const link = document.getElementById('input-link').value;
       const body = {
+          user_id: props.user_id,
           job_title: title,
           company: company,
           job_posting: link,
           status: 'interested'
         }
 
-      fetch(`http://localhost:3333/jobs/add/${props.user_id}`, {
+      fetch('http://localhost:3333/jobs/add', {
           method: 'POST',
           mode: 'cors',
           body: body

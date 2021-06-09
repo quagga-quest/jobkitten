@@ -1,26 +1,26 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
-const keys = require('./keys')
+require('dotenv').config();
 const db = require('../models/dbModel')
 
 
 //serialize user's oauth_id for our cookie
 passport.serializeUser((user, done) => {
-    // console.log('inside serialize user', user.rows)
+    console.log('inside serialize user', user.rows)
     done(null, user.rows[0].oauth_id)
 })
 
 passport.deserializeUser( async (id, done) => {
     // we need to pass in the user we're making the cookie for in done, so we will grab that user (again) via their oath_id in our query string
-    // console.log('inside deserializUser', id)
+    console.log('inside deserializUser', id)
     const userQuery = 'SELECT * FROM users WHERE oauth_id = $1'
     const queryParam = [id]
     //query db to find user based on their oath_id
     const user = await db.query(userQuery,queryParam)
     //pass user into done
-    // console.log('invoking done in deserializeUser')
+    console.log('invoking done in deserializeUser')
     done(null, user)
-    // console.log('passed done in deserializeUser')
+    console.log('passed done in deserializeUser')
 
 })
 
@@ -30,8 +30,8 @@ passport.use(
     //need to add a redirectURL, found in our google developer console
     callbackURL: '/auth/google/redirect',
     //need a client ID and a client secret
-    clientID: keys.google.clientID,
-    clientSecret: keys.google.clientSecret
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET
 }, async (req,accessToken, refreshToken,profile,done) => {
     console.log('inside passport.use')
 

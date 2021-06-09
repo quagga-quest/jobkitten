@@ -13,17 +13,12 @@ const ApplicationDetails = () => {
 
   const [appStatus, setAppStatus] = useState("");
 
+  // update taskStatus state based on task form submissions (this is invoked in TaskItem)
   const handleSubmit = event => {
     event.preventDefault();
-    console.log('event fired')
-    let taskCopy = taskStatus;
-    console.log('try to grab task name', event.target.id);
-    // console.log('inputVal', inputVal.value)
-    console.log('inputVal', event.target.inputData.value)
+    const taskCopy = taskStatus;
     taskCopy[event.target.id] = event.target.inputData.value;
-    console.log('check taskCopy', taskCopy)
     setTaskStatus({...taskCopy});
-    console.log('check taskStatus', taskStatus)
   }
 
   // fetch request for application data on the specific app ID

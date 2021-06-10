@@ -54,10 +54,12 @@ const App = () => {
                       />
                     </Route>
                     <Route path='/appdetails/:job_id'>
-                      <ApplicationDetails />
+                      {/* will need to pass jobID + status as a prop to this */}
+                      <ApplicationDetails activeAppBox={activeAppBox} />
                     </Route>
                     <Route path='/intdetails/:job_id'>
-                      <InterviewDetails />
+                      {/* will need to pass jobID + status as a prop to this */}
+                      <InterviewDetails activeAppBox={activeAppBox} />
                     </Route>
                     <Route path='/achievements/'>
                       <AchievementsContainer />

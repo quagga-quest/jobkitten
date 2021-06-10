@@ -16,20 +16,31 @@ router.get('/google', passport.authenticate('google', {
     scope: ['profile','email']
 }))
 
-router.get('/google/redirect',passport.authenticate('google',{
-    successRedirect: 'http://localhost:3333/',
-    failureRedirect: '/auth/error',
-  })
-);
+// router.get('/google/redirect',passport.authenticate('google',{
+//     successRedirect: 'http://localhost:3333/',
+//     failureRedirect: '/auth/error',
+//   })
+// );
 
 
+router.get('/google/redirect',passport.authenticate('google'),(req, res) => {
+    console.log('google/auth req.user', req.user.rows[0].user_id)
+    res.header('Access-Control-Allow-Origin', '*');
+    res.locals.body = req.user.rows[0]
+console.log('This it the res.locals.body res!!!!!!!!!!!!', res.locals.body)
+    //sending our OAuth user data
+    console.log('about to redirect home')
+    res.redirect('http://localhost:8080/')
+});
 
-// router.get('/google/redirect',passport.authenticate('google'),(req, res) => {
-//     // res.send(req.user)
-//     //sending our OAuth user data
-//     console.log('about to redirect home')
-//     res.redirect('/')
-// });
+
+//auth login
+router.get('/googlelogin', (req, res) => {
+    console.log('inside login router.get', req.locals.body)
+
+    //here is where we serve up our login page
+    res.send('Hello?')
+})
 
 //auth logout
 router.get('/logout', (req, res) => {

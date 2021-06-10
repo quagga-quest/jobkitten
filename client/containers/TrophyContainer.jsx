@@ -1,11 +1,17 @@
 import React from 'react';
 import TrophyBox from '../components/TrophyBox.jsx'
 import images from '../assets/images';
+import { 
+  Container,
+  Typography
+ } from "@material-ui/core";
 
 
 const TrophyContainer = (props) => {
 
-  let trophyCount = 20;
+  
+
+  let trophyCount = 7;
   const trophyArray = [];
   let row = 1;
   let col = 1;
@@ -21,9 +27,18 @@ const TrophyContainer = (props) => {
   }
 
   return (
+    <div>
+    <Container>
+    <Typography variant="h2" component="h2" color="primary" align="center">
+    Kawaii Fruit 
+  </Typography>
     <div style={{display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridTemplateRows: "repeat(3, 1fr)"}}>
       {trophyArray}
     </div>
+    </Container>
+
+    </div>
+
   )
 }
 

@@ -109,7 +109,7 @@ const App = () => {
                     </Route>
                   </Switch>
                 </BrowserRouter>
-            </div> : <div> <Login setIsLoggedIn={sLoggedIn}/> </div> 
+            </div> : <div> <Login setIsLoggedIn={setIsLoggedIn}/> </div> 
         )
 }
 

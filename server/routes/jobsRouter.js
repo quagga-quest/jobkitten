@@ -14,6 +14,7 @@ router.get('/:user_id', jobsController.getAllJobs, (req, res) => {
 
 // route handler for viewing a single job that's been clicked on
 router.get('/:user_id/:job_id', jobsController.getOneJob, (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
   res.status(200).json(res.locals.response);
 });
 
@@ -21,17 +22,21 @@ router.get('/:user_id/:job_id', jobsController.getOneJob, (req, res) => {
 router.post('/add/:user_id', jobsController.postJob, 
 // userController.updateUser, achievementsController.checkAchievements, achievementsController.addAchievement, 
 (req, res) => {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.status(200).json(res.locals.job);
+  res.header('Access-Control-Allow-Origin', '*');
+  res.status(200).json(res.locals.response);
 });
 
 // route handler for updating an existing job
-router.put('/update/:job_id', jobsController.updateJob, jobsController.updateJobStatus, userController.updateUser, achievementsController.checkAchievements, achievementsController.addAchievement, (req, res) => {
-  res.status(200).json({});
+router.put('/update/:job_id', jobsController.updateJob, jobsController.updateJobStatus,
+//userController.updateUser, achievementsController.checkAchievements, achievementsController.addAchievement,
+(req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.status(200).json(res.locals.response);
 });
 
 // route handler for removing an existing job
 router.delete('/remove/:job_id', jobsController.deleteJob, (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
   res.status(200).json(res.locals.response);
 });
 

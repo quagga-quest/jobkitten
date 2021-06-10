@@ -21,9 +21,18 @@ jobsController.getAllJobs = async (req, res, next) => {
 
 jobsController.getOneJob = async (req, res, next) => {
   const job_id = [ req.params.job_id ];
-  const getJobQuery = '';
+  const user_id = [req.params.user_id];
+  const getJobQuery = `SELECT * FROM Jobs WHERE user_id = ${user_id} AND job_id = ${job_id}`;
 
-  // return entire job requested
+  try {
+    const job = await db.query(getJobQuery);
+    console.log('job query results', job);
+    res.locals.response = job.rows[0];
+    return next();
+  } catch (error) {
+    console.log(error.stack);
+    return next(error);
+  }
 };
 
 // middleware to create new job in database

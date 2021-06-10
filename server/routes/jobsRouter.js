@@ -14,7 +14,7 @@ router.get('/:user_id', jobsController.getAllJobs, (req, res) => {
 
 // route handler for viewing a single job that's been clicked on
 router.get('/:user_id/:job_id', jobsController.getOneJob, (req, res) => {
-  res.status(200).json({});
+  res.status(200).json(res.locals.response);
 });
 
 // route handler for adding a new job

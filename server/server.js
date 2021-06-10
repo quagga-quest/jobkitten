@@ -25,7 +25,7 @@ app.use('/auth' , authRoutes)
 const userRouter = require('./routes/userRouter.js');
 const jobsRouter = require('./routes/jobsRouter.js');
 const achievementsRouter = require('./routes/achievementsRouter.js');
-const userController = require('../controllers/userController');
+// const userController = require('../controllers/userController');
 
 // parse requests
 app.use(express.json());
@@ -43,12 +43,12 @@ app.get('/', (req, res) => {
     res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
 })
 
-//** Login **//
-app.post('/login', 
-userController.verifyUser
-(req, res) => {
-    res.redirect('/');
-});
+// //** Login **//
+// app.post('/login', 
+// userController.verifyUser
+// (req, res) => {
+//     res.redirect('/');
+// });
 
 // route handler for all user requests
 app.use('/user', userRouter);

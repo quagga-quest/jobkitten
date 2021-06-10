@@ -7,11 +7,13 @@ const TaskContainer = (props) => {
   Object.keys(props.taskStatus).forEach((task) => {
     taskList.push(
       <TaskItem
-        name={task}
+        taskName={task}
         status={props.taskStatus[task]}
         setTaskStatus={props.setTaskStatus}
         handleLink={props.handleLink}
         handleBoolean={props.handleBoolean}
+        userId={props.userId} 
+        activeAppBox={props.activeAppBox}
         key={task}
       />
     )

@@ -11,6 +11,11 @@ module.exports = {
     mode: process.env.NODE_ENV,
     devServer: {
         publicPath: '/build',
+        proxy: {
+            '/jobs/**': {
+                target: 'http://localhost:3333/'
+        }
+    }
     },
     module: {
         rules: [

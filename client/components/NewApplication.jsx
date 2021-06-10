@@ -16,15 +16,18 @@ const NewApplication = (props) => {
       status: "interested",
     };
 
-    fetch("http://localhost:3333/jobs/add", {
+    fetch(`http://localhost:3333/jobs/add/${props.userId}`, {
       method: "POST",
       mode: "cors",
-      body: body,
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify({body}),
     })
-      .then(() => {
-        props.setInterested(...props.interested, body);
-      })
-      .catch((e) => console.log(e));
+    //   .then(() => {
+    //     props.setInterested(...props.interested, body);
+    //   })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch((e) => console.error(e));
   }
   return (
     <div id='form-wrap'>

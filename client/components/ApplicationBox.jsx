@@ -9,20 +9,6 @@ const ApplicationBox = (props) => {
         e.preventDefault;
         props.setActiveAppBox(props.jobId)
         props.status === 'interview' ? history.push(`intdetails/${props.jobId}`) : history.push(`appdetails/${props.jobId}`)
-        // switch(props.status) {
-        //     case 'interested' :
-        //         history.push(`appdetails/${props.jobId}`)
-        //     case 'inProgress' :
-        //         history.push(`appdetails/${props.jobId}`)
-        //     case 'completed' :
-        //         history.push(`appdetails/${props.jobId}`)
-        //     case 'interview' :
-        //         history.push(`intdetails/${props.jobId}`)
-        //     case 'rejected' : 
-        //         history.push(`appdetails/${props.jobId}`)
-        
-        // }
-
      
     }
   
@@ -30,7 +16,7 @@ const ApplicationBox = (props) => {
         e.preventDefault();
         const list = [...props.list];
 
-        fetch(`http://localhost:3333/jobs/remove/${props.job_id}`, {
+        fetch(`http://localhost:3333/jobs/remove/${props.jobId}`, {
             method: 'DELETE',
             mode: 'cors'
         })
@@ -48,10 +34,11 @@ const ApplicationBox = (props) => {
     return (
     <a href = '#' id='redirect' onClick={(e) => clickBox(e)}>
         <div className = "app-box">
-            <button type="button" onClick={(e) => deleteBox(e)}>X</button>
+            <button type="button" id="button-delete" onClick={(e) => deleteBox(e)}>X</button>
             <ul>
                 <li>Job title: {props.jobTitle}</li>
                 <li>Company: {props.company}</li>
+                <li>Posting: <a href={`${props.jobPosting}`}>click</a></li>
             </ul>
         </div>
     </a>

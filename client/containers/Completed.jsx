@@ -4,8 +4,27 @@ import React, { useState, useEffect } from 'react';
 import ApplicationSection from './ApplicationSection.jsx';
 
 const Completed = (props) => {
-  const [completed, setCompleted] = useState([{job_id: 2, job_title: 'backend', company: 'microsoft', job_posting: '', status: 'completed'}]);
-  const [rejected, setRejected] = useState([{job_id: 1, job_title: 'frontend', company: 'apple', job_posting: '', status: 'rejected'}]);
+  const [completed, setCompleted] = useState([]);
+  const [rejected, setRejected] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:3333/jobs/${props.userId}`, {
+      mode: 'cors',
+    }) 
+      .then(response => response.json())
+      .then(data => {
+        //[{job_id: , job_title: , company: , job_posting: , status: }, {}]
+        data.forEach(el => {
+          if(el.status === 'completed') {
+            setCompleted(completed => [...completed, el])
+          }
+          else if(el.status === 'rejected') {
+            setRejected(rejected => [...rejected, el])
+          }
+        })
+      })
+      .catch((e) => console.error(e))
+  }, []);
     return (
         <div id='completed'>
             <div className='application-section' id='completed-section-one'>

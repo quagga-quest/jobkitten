@@ -2,10 +2,7 @@ import React from 'react';
 import ApplicationBox from '../components/ApplicationBox.jsx'
 
 const ApplicationSection = (props) => {
-    /*
-    in props: array of objects with the same status (interested -> [{job_id, job_title, company, job_posting, status}])   
-    */
-    // console.log('history in app section', props.history)
+
     const listOfApplications = [];
     const copy = [...props.list];
     copy.forEach(el => {

@@ -7,18 +7,22 @@ const userController = require('../controllers/userController');
 const router = express.Router();
 
 // route handler for viewing all jobs
-router.get('/', jobsController.getAllJobs, (req, res) => {
-  res.status(200).json({});
+router.get('/:user_id', jobsController.getAllJobs, (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.status(200).json(res.locals.response);
 });
 
 // route handler for viewing a single job that's been clicked on
-router.get('/:job_id', jobsController.getOneJob, (req, res) => {
+router.get('/:user_id/:job_id', jobsController.getOneJob, (req, res) => {
   res.status(200).json({});
 });
 
 // route handler for adding a new job
-router.post('/add/:user_id', jobsController.postJob, userController.updateUser, achievementsController.checkAchievements, achievementsController.addAchievement, (req, res) => {
-  res.status(200).json({});
+router.post('/add/:user_id', jobsController.postJob, 
+// userController.updateUser, achievementsController.checkAchievements, achievementsController.addAchievement, 
+(req, res) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.status(200).json(res.locals.job);
 });
 
 // route handler for updating an existing job

@@ -7,27 +7,31 @@ import React, { useState, useEffect } from 'react';
 
 const Dashboard = (props) => {
 
-  const [interested, setInterested] = useState([{job_id: 1, job_title: 'frontend', company: 'apple', job_posting: '', status: 'interested'}]);
-  const [inProgress, setInProgress] = useState([{job_id: 3, job_title: 'frontend', company: 'spotify', job_posting: '', status: 'inProgress'}]);
-  const [interview, setInterview] = useState([{job_id: 2, job_title: 'backend', company: 'microsoft', job_posting: '', status: 'interview'}]);
+  const [interested, setInterested] = useState([]);
+  const [inProgress, setInProgress] = useState([]);
+  const [interview, setInterview] = useState([]);
 
-  // useEffect(() => {
-    // fetch('http://localhost:3000/jobs')
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     //[{job_id: , job_title: , company: , job_posting: , status: }, {}]
-    //     data.forEach(el => {
-    //       switch (el.status) {
-    //         case 'interested':
-    //           setInterested([...interested, el]);
-    //         case 'inProgress':
-    //           setInProgress([...inProgress, el]);
-    //         case 'interview':
-    //           setInterview([...interview, el]);
-    //       }
-    //     })
-    //   })
-//   }, []);
+  useEffect(() => {
+    fetch(`http://localhost:3333/jobs/${props.userId}`, {
+      mode: 'cors',
+    }) 
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        data.forEach(el => {
+          if(el.status === 'interested') {
+            setInterested(interested => [...interested, el])
+          }
+          else if(el.status === 'inProgress') {
+            setInProgress(inProgress => [...inProgress, el])
+          }
+          else if(el.status === 'interview') {
+            setInterview(interview => [...interview, el])
+          }
+        })
+      })
+      .catch((e) => console.error(e))
+  }, []);
 
     return (
         <div id='dashboard'>

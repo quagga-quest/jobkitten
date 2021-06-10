@@ -50,9 +50,9 @@ const TaskItem = (props) => {
     return (
       <div>
       { props.status === 'true' || typeof props.status === 'boolean' ? (
-        <div style={{marginLeft: "40px", marginBottom: "20px"}}>Completed</div>
+        <div style={{marginLeft: "40px", marginBottom: "20px", color: "green"}}>Completed</div>
       ) : (
-        <div style={{marginLeft: "40px", marginBottom: "20px"}}>Completed: <a href={props.status} target="_blank">View Document</a></div>
+        <div style={{marginLeft: "40px", marginBottom: "20px", color: "green"}}>Completed: <a href={props.status} target="_blank">View Document</a></div>
       )}
       </div>
     )
@@ -64,7 +64,7 @@ const TaskItem = (props) => {
         <div style={{marginLeft: "10px"}}>
           <img src="../assets/arrow-icon.png" style={{height: "20px", width: "20px"}}/>
         </div>
-        <h2 style={{marginLeft: "10px", marginRight: "10px"}}>{taskNames[props.name]}</h2>
+        <h2 style={{marginLeft: "10px", marginRight: "20px"}}>{taskNames[props.name]}</h2>
       </div>
       {/* <div> */}
       { !props.status ? (

@@ -74,7 +74,7 @@ const ApplicationDetails = (props) => {
   // }, [taskStatus]);
 
   return (
-    <div style={{display: "flex", flexDirection: "column", alignItems: "center", height: "100%"}}>
+    <div style={{display: "flex", flexDirection: "column", alignItems: "center", height: "100%", marginBottom: "30px"}}>
       <h1>{jobDetails.company}: {jobDetails.job_title}</h1>
       <TaskBadgeDisplay appStatus={appStatus} incomplete={["interested", "in progress"]}/>
       <TaskContainer taskStatus={taskStatus} setTaskStatus={setTaskStatus} handleLink={handleLink} handleBoolean={handleBoolean} />

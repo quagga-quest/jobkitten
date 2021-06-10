@@ -49,6 +49,7 @@ jobsController.postJob = async (req, res, next) => {
 
 // middleware to update an existing job in database
 jobsController.updateJob = async (req, res, next) => {
+  console.log(req.body);
   const job_id = req.params.job_id;
   const updateField = req.body.field;
   const newValue = req.body.value;
@@ -57,6 +58,7 @@ jobsController.updateJob = async (req, res, next) => {
   try {
     const updatedJob = await db.query(updateJobQuery);
     res.locals.response = updatedJob.rows;
+    console.log('THESE ARE ROWS', res.locals.response)
     return next();
   } catch (error) {
     console.log(error.stack);

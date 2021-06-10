@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
+import {Button, TextField} from '@material-ui/core';
 
 
 const ApplicationBox = (props) => {
@@ -14,6 +15,7 @@ const ApplicationBox = (props) => {
   
     function deleteBox(e){
         e.preventDefault();
+        e.stopPropagation();
         const list = [...props.list];
 
         fetch(`http://localhost:3333/jobs/remove/${props.jobId}`, {
@@ -34,7 +36,7 @@ const ApplicationBox = (props) => {
     return (
     <a href = '#' id='redirect' onClick={(e) => clickBox(e)}>
         <div className = "app-box">
-            <button type="button" id="button-delete" onClick={(e) => deleteBox(e)}>X</button>
+            <Button type="button" id="button-delete" onClick={(e) => deleteBox(e)}>X</Button>
             <ul>
                 <li>Job title: {props.jobTitle}</li>
                 <li>Company: {props.company}</li>

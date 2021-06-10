@@ -1,4 +1,6 @@
 import React from 'react';
+import {Button} from '@material-ui/core';
+
 
 const Login = (props) => {
 
@@ -9,7 +11,7 @@ const Login = (props) => {
 
     return (
     <div id ='login'>
-        <button id='button-login' onClick={(e) => {handleLogin(e)}}>Sign in</button>
+        <Button id='button-login' variant="contained" color="primary" onClick={(e) => {handleLogin(e)}}>Sign in</Button>
     </div>
     )
 }

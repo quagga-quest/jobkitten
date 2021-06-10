@@ -37,7 +37,7 @@ router.get('/logout', (req, res) => {
 router.get('/google/redirect',passport.authenticate('google'),(req, res) => {
     // res.send(req.user)
     //sending our OAuth user data
-    console.log('about to redirect home')
+    console.log('about to redirect home', res)
     res.redirect('/')
 });
 

@@ -7,6 +7,9 @@ import ApplicationDetails from '../containers/ApplicationDetails.jsx';
 import InterviewDetails from '../containers/InterviewDetails.jsx';
 import AchievementsContainer from '../containers/AchievementsContainer.jsx';
 
+
+
+
 const App = () => {
     
     const [interested, setInterested] = useState([{job_id: 1, job_title: 'frontend', company: 'apple', job_posting: '', status: 'interested'}]);
@@ -99,7 +102,7 @@ const App = () => {
                     </Route>
                   </Switch>
                 </BrowserRouter>
-            </div>
+              </div>
         )
 }
 

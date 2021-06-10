@@ -1,16 +1,19 @@
 import React from 'react';
+import images from '../assets/images';
+
 
 const TaskBadgeDisplay = (props) => {
 
   // props needed:
   // app status
+  const randomNum = Math.floor(Math.random()*22);
 
   const incompleteView = () => {
     return (
       <div>
-        <h2>Keep Going!</h2>
+        <h2>{images.ninjaKittyCaption[`${randomNum}`]}</h2>
         <div>
-          <img src="../../assets/question-mark.png" style={{height: "100px", width: "100px"}}/>
+          <img src={images.ninjaKitty[`${randomNum}`]} style={{maxHeight: "220px", maxWidth: "200px"}}/>
         </div>
       </div>
     )

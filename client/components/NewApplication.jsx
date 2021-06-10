@@ -1,9 +1,5 @@
 import React from 'react';
-import kiwi from '../assets/images';
-import apple from '../assets/images';
-import lemon from '../assets/images';
-import ninjaKitty from '../assets/images';
-import ninjaKittyCaption from '../assets/images';
+
 
 
 
@@ -39,11 +35,6 @@ const NewApplication = (props) => {
         <label htmlFor='input-link'>Link to the job posting: </label>
         <input type='text' id='input-link'></input>
         <button type='submit'>Submit</button>
-        <img src={kiwi.module.cut} />
-        {/* <img src={apple.module.happy} />
-        <img src={lemon.module.love} />
-        <img src={ninjaKitty.module.hello} />
-        <img src={ninjaKittyCaption.module.hello} /> */}
 
     </form>
     )

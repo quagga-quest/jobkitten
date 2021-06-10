@@ -1,16 +1,19 @@
 import React from 'react';
+import images from '../assets/images';
 
-const TaskBadgeDisplay = () => {
+
+const TaskBadgeDisplay = (props) => {
 
   // props needed:
   // app status
+  const randomNum = Math.floor(Math.random()*22);
 
   const incompleteView = () => {
     return (
       <div>
-        <h2>Keep Going!</h2>
+        <h2>{images.ninjaKittyCaption[`${randomNum}`]}</h2>
         <div>
-          <img src="assets/icon.png" />
+          <img src={images.ninjaKitty[`${randomNum}`]} style={{maxHeight: "220px", maxWidth: "200px"}}/>
         </div>
       </div>
     )
@@ -28,10 +31,24 @@ const TaskBadgeDisplay = () => {
     )
   }
   
+    // statuses
+  // interested
+  // in progress
+  // completed
+  // interview
+  // rejected
+  // hired
+
+  const incompleteArr = props.incomplete;
+
   // add logic to conditionally render complete vs. incomplete views
   return (
     <div style={{display: "flex", flexDirection: "column", border: "solid 1px black"}}>
-      {incompleteView()}
+      { incompleteArr.includes(props.appStatus)  ? (
+        incompleteView()
+      ) : (
+        completeView()
+      )}
     </div>
   )
 }

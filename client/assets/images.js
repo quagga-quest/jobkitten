@@ -1,26 +1,24 @@
-const kiwi = {
-    happy: "https://drive.google.com/uc?id=1S57G_MR6tbqvSrnVcRGrdBp-tnmSE9Js",
-    cool: "https://drive.google.com/uc?id=11KbjpH8xDCTrx1dpG9WNoROAjv_iP3Q_",
-    cut: "https://drive.google.com/uc?id=1JvGRVNWq96xZs1UxVaVeR1Kd1ZOGOY6i",
-    love: "https://drive.google.com/uc?id=1SB84VpIEiyiYBPXfKoFc92yWxzRnDbqJ"
+const welcome = {
+    0: "https://drive.google.com/uc?id=1Ym8QqePck_DKpq8an1nSdSmUhHSej9Nw",
+    0: "Welcome! I am Ninja Kitty"
 }
 
-const lemon = {
-    happy: "https://drive.google.com/uc?id=1Gn1Dw1UfHRNYia0MfjMG8lHuKAiZ2Bvk",
-    cool: "https://drive.google.com/uc?id=10wEiTyEYaq58NPYC2u31rx986XlidHJ8",
-    cut: "https://drive.google.com/uc?id=1vb_1axDIyWmNJlV6faVOPvJEcr07z6bP",
-    love: "https://drive.google.com/uc?id=15ZiaTyzfN2f-xxJCfHKgrTnyiSOyeXjz"
-}
-
-const apple = {
-    happy: "https://drive.google.com/uc?id=1m2fzrkAwRDxmGcBcparkGizHMGtMPBrd",
-    cool: "https://drive.google.com/uc?id=1J-cvAm_khe859ULBqiuxZA2Wr8uMQwII",
-    cut: "https://drive.google.com/uc?id=1TcWy6L15-128ZqcZemmr2zvrnA_KZpg3",
-    love: "https://drive.google.com/uc?id=1_YiV8XuJ6m5oPWaMeITDKWs0SZ_q_G7H"
+const kawaiiFruit = {
+    1: "https://drive.google.com/uc?id=1S57G_MR6tbqvSrnVcRGrdBp-tnmSE9Js",
+    10: "https://drive.google.com/uc?id=11KbjpH8xDCTrx1dpG9WNoROAjv_iP3Q_",
+    7: "https://drive.google.com/uc?id=1JvGRVNWq96xZs1UxVaVeR1Kd1ZOGOY6i",
+    4: "https://drive.google.com/uc?id=1SB84VpIEiyiYBPXfKoFc92yWxzRnDbqJ",
+    5: "https://drive.google.com/uc?id=1Gn1Dw1UfHRNYia0MfjMG8lHuKAiZ2Bvk",
+    2: "https://drive.google.com/uc?id=10wEiTyEYaq58NPYC2u31rx986XlidHJ8",
+    11: "https://drive.google.com/uc?id=1vb_1axDIyWmNJlV6faVOPvJEcr07z6bP",
+    8: "https://drive.google.com/uc?id=15ZiaTyzfN2f-xxJCfHKgrTnyiSOyeXjz",
+    9: "https://drive.google.com/uc?id=1m2fzrkAwRDxmGcBcparkGizHMGtMPBrd",
+    6: "https://drive.google.com/uc?id=1J-cvAm_khe859ULBqiuxZA2Wr8uMQwII",
+    3: "https://drive.google.com/uc?id=1TcWy6L15-128ZqcZemmr2zvrnA_KZpg3",
+    12: "https://drive.google.com/uc?id=1_YiV8XuJ6m5oPWaMeITDKWs0SZ_q_G7H"
 }
 
 const sticker = {
-    0: "https://drive.google.com/uc?id=19uJUHTJXvS82BtV1MQTiW1xDcuABJCQy",
     1: "https://drive.google.com/uc?id=1pyUqZeKAnVbn-Ju7T9uNX9mmdS0efCh5",
     2: "https://drive.google.com/uc?id=17Frke955q5EkSM6rdsrl_i9yUOtNuvu4",
     3: "https://drive.google.com/uc?id=1gW2KGbhw8K2czS7I_Qq_fsLmiZ-YClrh",
@@ -50,11 +48,13 @@ const sticker = {
     27: "https://drive.google.com/uc?id=1cKArgt6-_Xzbal_MhO43EBM4g5YzhAXn",
     28: "https://drive.google.com/uc?id=1NguCyY91ax7hz2HQAjuUsewRid53dWvV",
     29: "https://drive.google.com/uc?id=1XOe9xMCJcPXgez_2JTf4dSAM5mfXHJZG",
-    30: "https://drive.google.com/uc?id=1FxHQMRcabDKT27lq2PALGjCT6hU9O6qW"
+    30: "https://drive.google.com/uc?id=1FxHQMRcabDKT27lq2PALGjCT6hU9O6qW",
+    31: "https://drive.google.com/uc?id=19uJUHTJXvS82BtV1MQTiW1xDcuABJCQy",
+
 }
 
 const ninjaKitty = {
-    hello: "https://drive.google.com/uc?id=1Ym8QqePck_DKpq8an1nSdSmUhHSej9Nw",
+    0: "https://drive.google.com/uc?id=12V8In2YpEQ69JKHosiiKIHjl9nwcgTx0",
     1: "https://drive.google.com/uc?id=1KkHRK25dqbRSiiBQ_7PJbXUKvaE66pXR",
     2: "https://drive.google.com/uc?id=1CFnlulUg_odem3qz4uedJXBnx8NfxTQc",
     3: "https://drive.google.com/uc?id=1g_Kwba03ng2aE8MiMkXAGR_naPIBrTwx",
@@ -80,7 +80,7 @@ const ninjaKitty = {
 }
 
 const ninjaKittyCaption = {
-    hello: "Welcome! I am Ninja Kitty",
+    0: "WOOHOO!!! YOU GOT THIS!",
     1: "Get some self-care in today.",
     2: "You are awesome!",
     3: "Nice headshot!",
@@ -105,10 +105,9 @@ const ninjaKittyCaption = {
     22: "I am always in awe of you."
 }
 
-exports.module = {
-    kiwi,
-    lemon,
-    apple,
+module.exports = {
+    welcome,
+    kawaiiFruit,
     sticker,
     ninjaKitty,
     ninjaKittyCaption

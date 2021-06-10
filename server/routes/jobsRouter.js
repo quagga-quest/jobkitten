@@ -27,7 +27,7 @@ router.post('/add/:user_id', jobsController.postJob,
 });
 
 // route handler for updating an existing job
-router.put('/update/:job_id', jobsController.updateJob, jobsController.updateJobStatus,
+router.post('/update/:job_id', jobsController.updateJob, jobsController.updateJobStatus,
 //userController.updateUser, achievementsController.checkAchievements, achievementsController.addAchievement,
 (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');

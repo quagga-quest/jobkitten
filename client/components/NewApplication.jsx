@@ -1,5 +1,8 @@
 import React from 'react';
 
+
+
+
 const NewApplication = (props) => {
     function submitNewApp (e) {
       e.preventDefault();
@@ -7,6 +10,7 @@ const NewApplication = (props) => {
       const company = document.getElementById('input-company').value;
       const link = document.getElementById('input-link').value;
       const body = {
+          user_id: props.user_id,
           job_title: title,
           company: company,
           job_posting: link,
@@ -32,6 +36,7 @@ const NewApplication = (props) => {
         <label htmlFor='input-link'>Link to the job posting: </label>
         <input type='text' id='input-link'></input>
         <button type='submit'>Submit</button>
+
     </form>
     )
 }

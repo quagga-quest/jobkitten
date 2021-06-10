@@ -5,12 +5,12 @@ const userController = require('../controllers/userController');
 
 const router = express.Router();
 
-// route handler for creating an account
+// route handler for creating an account -- NOT CURRENTLY BEING USED
 router.post('/signup', (req, res) => {
   res.status(200).json({});
 });
 
-// route handler for logging in
+// route handler for logging in -- NOT CURRENTLY BEING USED
 router.post('/login', (req, res) => {
   res.status(200).json({});
 });

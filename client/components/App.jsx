@@ -21,7 +21,7 @@ const App = () => {
                   <nav className="react-router-nav">
                     <ul>
                       <li>
-                        <Link to='/'> Applications in progress</Link>
+                        <Link to=''> Applications in progress</Link>
                       </li>
                       <li>
                         <Link to='/completed'> Completed applications</Link>
@@ -36,7 +36,7 @@ const App = () => {
                   </nav>
 
                   <Switch>
-                    <Route path='/'>
+                    <Route path=''>
                       <Dashboard 
                         userId={userId}
                         activeAppBox={activeAppBox} setActiveAppBox={setActiveAppBox}

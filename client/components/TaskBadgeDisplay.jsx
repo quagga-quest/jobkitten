@@ -18,7 +18,6 @@ const TaskBadgeDisplay = (props) => {
   }
 
   const completeView = () => {
-    // add logic to reference image src based on the jobID
     return (
       <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
         <h2>All Done!</h2>
@@ -29,16 +28,8 @@ const TaskBadgeDisplay = (props) => {
     )
   }
 
-  let statusCheck;
   const incompleteArr = props.incomplete;
 
-  // useEffect(() => {
-  //   const incompleteArr = props.incomplete;
-  //   statusCheck = incompleteArr.includes(props.jobDetails.status)
-  //   console.log('status boolean', statusCheck);
-  //   return statusCheck
-  // }, [jobDetails])
-  
 
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>

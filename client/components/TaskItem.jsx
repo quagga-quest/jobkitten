@@ -62,14 +62,12 @@ const TaskItem = (props) => {
         </div>
         <h2 style={{marginLeft: "10px", marginRight: "20px"}}>{taskNames[props.taskName]}</h2>
       </div>
-      {/* <div> */}
       { !props.status ? (
         incompleteView()
       ) : (
         completeView()
       )}
-      {/* </div> */}
-      
+
     </div>
   )
 }

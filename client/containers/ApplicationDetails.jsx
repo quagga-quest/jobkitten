@@ -12,7 +12,6 @@ const ApplicationDetails = (props) => {
     .then((res) => {
       return res.json();
     }).then((res) => {
-      // console.log('res json', res);
       const statusObj = {
         reach_out: res.reach_out,
         resume_link: res.resume_link,
@@ -61,9 +60,6 @@ const ApplicationDetails = (props) => {
     fetch(`http://localhost:3333/jobs/update/${props.activeAppBox}`, requestOptions)
     .then((res) => {
       return res.json();
-    }).then((res) => {
-      // console.log('res json', res);
-
     }).catch((e) => console.error(e))
 
   }
@@ -94,7 +90,6 @@ const ApplicationDetails = (props) => {
     .then((res) => {
       return res.json();
     }).then((res) => {
-      // console.log('res json', res);
       if(jobDetails.status !== 'interested' && res.status !== jobDetails.status) {
         const jobDetailsObj = {
           job_id: res.job_id,
@@ -108,11 +103,6 @@ const ApplicationDetails = (props) => {
     }).catch((e) => console.error(e))
 
   }
-
-  // TBD: useEffect that listens for taskStatus changing state and executes a post request to update 
-  // useEffect(() => {
-
-  // }, [taskStatus]);
 
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: "center", height: "100%", marginBottom: "30px"}}>

@@ -52,24 +52,11 @@ jobsController.updateJob = async (req, res, next) => {
   const job_id = req.params.job_id;
   const updateField = req.body.field;
   const newValue = req.body.value;
-  // const updateProps = [ updateField, newValue, job_id ]
-  // const updateJobQuery = 'UPDATE Jobs SET follow_up = true WHERE job_id = 4 RETURNING *';
+
   const updateJobQuery = `UPDATE Jobs SET ${updateField}='${newValue}' WHERE job_id = ${job_id} RETURNING *`;
-  // const updateJobQuery = {
-  //   text: 'UPDATE Jobs SET $2 = $3 WHERE job_id = $1 RETURNING *',
-  //   values: [ job_id, updateField, newValue ],
-  //   rowMode: 'array'
-  // }
-  // console.log('req params within updateJob', req.params);
-  // console.log('req body within updateJob', req.body);
-  // console.log('updateField', updateField);
-  // console.log('newValue', newValue);
-  // console.log('req within updateJob', req);
   try {
-    // const updatedJob = await db.query(updateJobQuery, updateProps);
     const updatedJob = await db.query(updateJobQuery);
     res.locals.response = updatedJob.rows;
-    // console.log('res locals in updateJob', res.locals.response);
     return next();
   } catch (error) {
     console.log(error.stack);
@@ -100,7 +87,6 @@ jobsController.updateJobStatus = async (req, res, next) => {
   console.log('Status after', status);
   console.log('newStatus after', newStatus);
   if (newStatus !== status) {
-    // const updateStatusProps = [ job_id, newStatus ];
     const updateStatusQuery = `UPDATE Jobs SET status='${newStatus}' WHERE job_id = ${job_id} RETURNING *`;
 
     try {

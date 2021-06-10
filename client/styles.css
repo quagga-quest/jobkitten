@@ -14,6 +14,8 @@ li {
     list-style-type: none;
 }
 
+
+
 ul {
     padding-inline-start: 0%;
 }
@@ -23,7 +25,11 @@ label, input {
     clear: both;
 }
 
-input {
+h4 {
+    margin-bottom: 1rem;
+}
+
+#input-link {
     margin-bottom: 2%;
 }
 
@@ -45,7 +51,8 @@ input {
 }
 
 .application-section {
-    border: 1px solid red;
+    border: 1px solid blue;
+    border-radius: 15px;
     min-height: 33%;
     padding: 1rem;
     overflow-x: scroll;
@@ -55,6 +62,7 @@ input {
     border: 1px solid blue;
     margin: 10px;
     padding: 10px;
+    min-width: 15%;
     max-width: 15%;
     max-height: fit-content;
     float: left;
@@ -81,6 +89,10 @@ input {
     text-align: center;
 }
 
+.react-router-nav a {
+    color: black;
+}
+
 #form-wrap {
     display: flex;
     justify-content: center;
@@ -93,3 +105,13 @@ input {
     float: right;
 }
 
+#button-submit {
+    clear: both;
+    display: block;
+}
+
+#button-login {
+    /* height: 3rem; */
+    font-size: 2rem;
+    padding: 25px;
+}

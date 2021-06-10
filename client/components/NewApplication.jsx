@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Button, TextField} from '@material-ui/core';
 
 
 
@@ -18,7 +18,7 @@ const NewApplication = (props) => {
 
     fetch(`http://localhost:3333/jobs/add/${props.userId}`, {
       method: "POST",
-      mode: "cors",
+      mode: "no-cors",
       headers: {'Content-Type' : 'application/json'},
       body: JSON.stringify({body}),
     })
@@ -39,12 +39,12 @@ const NewApplication = (props) => {
         }}
       >
         <label htmlFor="input-title">Job title: </label>
-        <input type="text" id="input-title"></input>
+        <TextField type="text" className = "input" id="input-title" variant="outlined"></TextField>
         <label htmlFor="input-company">Company: </label>
-        <input type="text" id="input-company"></input>
+        <TextField type="text" className = "input" id="input-company" variant="outlined" ></TextField>
         <label htmlFor="input-link">Link to the job posting: </label>
-        <input type="text" id="input-link"></input>
-        <button type="submit">Submit</button>
+        <TextField type="text" className = "input" id="input-link" variant="outlined"></TextField>
+        <Button type="submit" id = 'button-submit' variant="contained" color="primary">Submit</Button>
       </form>
     </div>
   );

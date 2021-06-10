@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import Completed from '../containers/Completed.jsx';
 import Dashboard from '../containers/Dashboard.jsx';
@@ -21,13 +21,13 @@ const App = () => {
                   <nav className="react-router-nav">
                     <ul>
                       <li>
-                        <Link to=''> Applications in progress</Link>
+                        <Link to='/dashboard'> Applications in progress</Link>
                       </li>
                       <li>
                         <Link to='/completed'> Completed applications</Link>
                       </li>
                       <li>
-                          <Link to='/add'> Add new application</Link>
+                          <Link to='/add'> New application</Link>
                       </li>
                       <li>
                           <Link to='/achievements'> View achievements</Link>
@@ -36,12 +36,13 @@ const App = () => {
                   </nav>
 
                   <Switch>
-                    <Route path=''>
+                    <Route path='/dashboard'>
                       <Dashboard 
                         userId={userId}
                         activeAppBox={activeAppBox} setActiveAppBox={setActiveAppBox}
                         />
                     </Route>
+                    <Redirect from="/" exact to="/dashboard" />
                     <Route path='/completed'>
                       <Completed 
                         userId={userId}

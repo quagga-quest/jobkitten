@@ -1,5 +1,6 @@
 import React from 'react';
 import images from '../assets/images';
+import {Button, Checkbox, TextField} from '@material-ui/core';
 
 
 const TaskItem = (props) => {
@@ -26,16 +27,18 @@ const TaskItem = (props) => {
 
   const incompleteView = () => {
     return (
-      <div>
+      <div style={{marginLeft: "40px", marginBottom: "20px"}}>
       { linkTypes.includes(props.name) ? (
         <form id={props.name} onSubmit={()=>props.handleLink(event)}>
-          <input id="inputData" type="text"></input>
-          <button type="submit" style={{marginLeft: "10px"}}>Submit</button>
+          {/* <input id="inputData" type="text"></input> */}
+          <TextField id="inputData" label="Link to Document" variant="outlined" />
+          <Button type="submit" variant="contained" color="primary" style={{marginLeft: "10px"}}>Submit</Button>
         </form>
       ) : (
         <form id={props.name} onSubmit={()=>props.handleBoolean(event)}>
-          <input type="checkbox" id="checkBox" value="true"></input>
-          <button type="submit" style={{marginLeft: "10px"}}>Complete</button>
+          {/* <input type="checkbox" id="checkBox" value="true"></input> */}
+          <Checkbox color="secondary" id="checkBox" value="true"></Checkbox>
+          <Button type="submit" variant="contained" color="secondary" style={{marginLeft: "10px"}}>Complete</Button>
         </form>
       )}
       </div>
@@ -44,36 +47,33 @@ const TaskItem = (props) => {
   }
 
   const completeView = () => {
-    let displayText;
-    if(props.status === 'true' || typeof props.status === 'boolean') displayText = 'Complete';
-    else displayText = `Complete: ${props.status}`;
-
     return (
-      // <div>
-      //   {displayText}
-      // </div>
-
       <div>
       { props.status === 'true' || typeof props.status === 'boolean' ? (
-        <div>Complete</div>
+        <div style={{marginLeft: "40px", marginBottom: "20px"}}>Completed</div>
       ) : (
-        <div>Complete: <a href={props.status} target="_blank">View Document</a></div>
+        <div style={{marginLeft: "40px", marginBottom: "20px"}}>Completed: <a href={props.status} target="_blank">View Document</a></div>
       )}
       </div>
     )
   }
 
   return (
-    <div style={{display: "flex", flexDirection: "row", border: "black 1px solid", alignItems: "center"}}>
-      <div style={{marginLeft: "10px"}}>
-        <img src="assets/icon.png" />
+    <div style={{display: "flex", flexDirection: "column", border: "black 1px solid"}}>
+      <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+        <div style={{marginLeft: "10px"}}>
+          <img src="../assets/arrow-icon.png" style={{height: "20px", width: "20px"}}/>
+        </div>
+        <h2 style={{marginLeft: "10px", marginRight: "10px"}}>{taskNames[props.name]}</h2>
       </div>
-      <h2 style={{marginLeft: "10px", marginRight: "10px"}}>{taskNames[props.name]}</h2>
+      {/* <div> */}
       { !props.status ? (
         incompleteView()
       ) : (
         completeView()
       )}
+      {/* </div> */}
+      
     </div>
   )
 }

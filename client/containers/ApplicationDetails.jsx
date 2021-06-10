@@ -11,8 +11,11 @@ const ApplicationDetails = (props) => {
     follow_up: null,
     submit_application: null
   });
-
-  const [appStatus, setAppStatus] = useState("in progress");
+  const [appStatus, setAppStatus] = useState("completed");
+  const [jobDetails, setJobDetails] = useState({
+    job_title: "Fullstack Engineer",
+    company: "Google"
+  })
   // statuses
   // interested
   // in progress
@@ -53,6 +56,7 @@ const ApplicationDetails = (props) => {
     // }
 
     // fetch('/jobs/update/id', requestOptions)
+
   }
 
   const handleBoolean = event => {
@@ -70,9 +74,8 @@ const ApplicationDetails = (props) => {
   // }, [taskStatus]);
 
   return (
-    <div style={{display: "flex", flexDirection: "column", height: "100%"}}>
-      <h1>Job Title</h1>
-      <h3>Company</h3>
+    <div style={{display: "flex", flexDirection: "column", alignItems: "center", height: "100%"}}>
+      <h1>{jobDetails.company}: {jobDetails.job_title}</h1>
       <TaskBadgeDisplay appStatus={appStatus} incomplete={["interested", "in progress"]}/>
       <TaskContainer taskStatus={taskStatus} setTaskStatus={setTaskStatus} handleLink={handleLink} handleBoolean={handleBoolean} />
     </div>

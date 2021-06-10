@@ -8,6 +8,11 @@ const InterviewDetails = (props) => {
   const [intTaskStatus, setIntTaskStatus] = useState({});
 
   const [appStatus, setAppStatus] = useState("in progress");
+  const [jobDetails, setJobDetails] = useState({
+    job_title: "Fullstack Engineer",
+    company: "Google"
+  })
+  
   // statuses
   // interested
   // in progress
@@ -78,9 +83,8 @@ const InterviewDetails = (props) => {
   // }, [taskStatus]);
 
   return (
-    <div style={{display: "flex", flexDirection: "column", height: "100%"}}>
-      <h1>Job Title</h1>
-      <h3>Company</h3>
+    <div style={{display: "flex", flexDirection: "column", alignItems: "center", height: "100%"}}>
+      <h1>{jobDetails.company}: {jobDetails.job_title}</h1>
       <TaskBadgeDisplay appStatus={appStatus} incomplete={["interested", "in progress", "completed", "interview"]}/>
       <TaskContainer taskStatus={intTaskStatus} setTaskStatus={setIntTaskStatus} handleBoolean={handleBoolean}/>
       <AddInterviewTask handleAdd={handleAdd} />

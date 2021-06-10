@@ -1,7 +1,31 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
+
 
 const ApplicationBox = (props) => {
+    const history = useHistory();
 
+    function clickBox(e){
+        e.preventDefault;
+        props.setActiveAppBox(props.jobId)
+        props.status === 'interview' ? history.push(`intdetails/${props.jobId}`) : history.push(`appdetails/${props.jobId}`)
+        // switch(props.status) {
+        //     case 'interested' :
+        //         history.push(`appdetails/${props.jobId}`)
+        //     case 'inProgress' :
+        //         history.push(`appdetails/${props.jobId}`)
+        //     case 'completed' :
+        //         history.push(`appdetails/${props.jobId}`)
+        //     case 'interview' :
+        //         history.push(`intdetails/${props.jobId}`)
+        //     case 'rejected' : 
+        //         history.push(`appdetails/${props.jobId}`)
+        
+        // }
+
+     
+    }
+  
     function deleteBox(e){
         e.preventDefault();
         const list = [...props.list];
@@ -19,12 +43,10 @@ const ApplicationBox = (props) => {
             props.action([...list]);
           })
           .catch((e) => console.log(e))
-
-
-
     }
+
     return (
-    <a href = "">
+    <a href = '#' id='redirect' onClick={(e) => clickBox(e)}>
         <div className = "app-box">
             <button type="button" onClick={(e) => deleteBox(e)}>X</button>
             <ul>

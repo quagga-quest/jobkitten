@@ -47,13 +47,14 @@ input {
     border: 1px solid red;
     min-height: 33%;
     padding: 1rem;
+    overflow-x: scroll;
 }
 
 .app-box {
     border: 1px solid blue;
     margin: 10px;
     padding: 10px;
-    max-width: fit-content;
+    max-width: 15%;
     max-height: fit-content;
     float: left;
 }
@@ -84,5 +85,10 @@ input {
     justify-content: center;
     align-items: center;
     padding-top: 10%;
+}
+
+#button-delete {
+    display: block;
+    float: right;
 }
 

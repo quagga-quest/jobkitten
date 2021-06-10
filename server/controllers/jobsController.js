@@ -4,11 +4,14 @@ const db = require('../models/dbModel');
 // middleware to retrieve all existing jobs from database and send back to client as JSON
 jobsController.getAllJobs = async (req, res, next) => {
   // adjust these as necessary
-  const user_id = [ req.body.user_id ];
-  const getJobsQuery = 'SELECT * FROM Jobs WHERE Jobs._id = $1';
-
+  // const user_id = [ req.body.user_id ];
+  const user_id = req.params.user_id;
+  const getJobsQuery = `SELECT * FROM Jobs WHERE user_id = ${user_id}`;
   try {
-    res.locals.response = await db.query(getJobsQuery, user_id);
+    // res.locals.response = await db.query(getJobsQuery);
+    // values returned from db query get stored in the property 'rows' of response, therefore we need those rows in res.locals.response
+    const jobs = await db.query(getJobsQuery);
+    res.locals.response = jobs.rows;
     return next();
   } catch (error) {
     console.log(error.stack);
@@ -25,15 +28,20 @@ jobsController.getOneJob = async (req, res, next) => {
 
 // middleware to create new job in database
 jobsController.postJob = async (req, res, next) => {
-  // adjust these as necessary
-  const newJob = [ req.params.user_id, ...req.body ];
-  const postJobQuery = 'INSERT INTO Jobs (user_id, job_title, company, job_posting, status) VALUES ($1, $2, $3, $4, $5)';
+  const { job_title, company, job_posting, status } = req.body;
+  const bodyProps = [job_title, company, job_posting, status];
 
+  const postJobQuery = `INSERT INTO Jobs (user_id, job_title, company, job_posting, status) VALUES (${req.params.user_id}, $1, $2, $3, $4) RETURNING job_id;`
+  
   try {
-    await db.query(postJobQuery, newJob);
+    
     // return the new job as the response; fill in job_posting below
-    res.locals.response = await db.query('SELECT * FROM Jobs WHERE Jobs.job_posting = ');
-    res.locals.numberOfJobs 
+    // res.locals.response = await db.query('SELECT * FROM Jobs WHERE Jobs.job_posting = ');
+    
+    const newJob = await db.query(postJobQuery, bodyProps);
+    res.locals.job = newJob.rows;
+
+    // res.locals.numberOfJobs 
     return next();
   } catch (error) {
     console.log(error.stack);
@@ -69,12 +77,12 @@ jobsController.updateJobStatus = async (req, res, next) => {
 // middleware to delete an existing job based on job_id
 jobsController.deleteJob = async (req, res, next) => {
   // adjust these as necessary
-  const job_id = [ req.params.job_id ];
-  const deleteJobQuery = 'DELETE FROM Jobs WHERE Jobs.job_id = $1';
+  // const job_id = [ req.params.job_id ];
+  const deleteJobQuery = `DELETE FROM Jobs WHERE Jobs.job_id = ${req.params.job_id}`;
 
   try {
-    await db.query(deleteJobQuery, job_id);
-    res.locals.response = `Deleted job ${job_id}`;
+    await db.query(deleteJobQuery);
+    res.locals.response = `Deleted job ${req.params.job_id}`;
   } catch (error) {
     console.log(error.stack);
     return next(error);

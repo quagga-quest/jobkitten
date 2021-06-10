@@ -4,15 +4,16 @@ const path = require('path');
 const PORT = 3333;
 const app = express();
 const passport = require("passport");
-const keys = require("./config/keys");
+require('dotenv').config();
 const passportSetup = require('./config/passport-setup');
 const cookieSession = require('cookie-session');
 const authRoutes = require('./routes/authRoutes.js');
-
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
-    keys: [keys.session.cookieKey]
+    keys: [process.env.COOKIE_KEY]
   }))
 
   //initialize passport
@@ -29,7 +30,11 @@ const achievementsRouter = require('./routes/achievementsRouter.js');
 // parse requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
+
 // app.use(cookieParser());
+//require and use cors in order to avoid cross-origin resource sharing errors (8080 & 3333)
+app.use(cors());
 
 app.use('/build', express.static(path.join(__dirname, '../build')));
 

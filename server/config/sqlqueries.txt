@@ -1,20 +1,24 @@
 create table queries
 
 CREATE TABLE Users (
-    user_id varchar(255),
+    user_id SERIAL UNIQUE PRIMARY KEY,
     first_name1 varchar(255),
     last_name1 varchar(255),
     username varchar(255),
     email varchar(255),
 	profile_image varchar(255),
     display_name_1 varchar(255),
-    oauth_id varchar(255)
+    oauth_id varchar(255),
+    sticker_value int,
+    apple_value int,
+    kiwi_value int,
+    lemon_value int
 )
 
 
 CREATE TABLE Jobs (
-    job_id int,
-    user_id varchar(255),
+    job_id SERIAL UNIQUE PRIMARY KEY,
+    user_id FOREIGN KEY REFERENCES Users (user_id),
     status varchar(255),
     job_title varchar(255),
     company varchar(255),
@@ -32,5 +36,6 @@ CREATE TABLE Jobs (
 
 CREATE TABLE Achievements (
 achievement_type varchar(255),
-user_id
+user_id FOREIGN KEY REFERENCES Users (user_id),
+
 )

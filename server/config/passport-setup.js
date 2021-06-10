@@ -1,13 +1,13 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
-const keys = require('./keys')
+require('dotenv').config();
 const db = require('../models/dbModel')
 
 
 //serialize user's oauth_id for our cookie
 passport.serializeUser((user, done) => {
     // console.log('inside serialize user', user.rows)
-    done(null, user.rows[0].oauth_id)
+    done(null, user.rows[0].user_id)
 })
 
 passport.deserializeUser( async (id, done) => {
@@ -30,10 +30,10 @@ passport.use(
     //need to add a redirectURL, found in our google developer console
     callbackURL: '/auth/google/redirect',
     //need a client ID and a client secret
-    clientID: keys.google.clientID,
-    clientSecret: keys.google.clientSecret
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET
 }, async (req,accessToken, refreshToken,profile,done) => {
-    console.log('inside passport.use')
+    // console.log('inside passport.use')
 
     //passport callback function
     // check if user exists in our db first

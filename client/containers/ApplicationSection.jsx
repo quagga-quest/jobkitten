@@ -2,9 +2,6 @@ import React from 'react';
 import ApplicationBox from '../components/ApplicationBox.jsx'
 
 const ApplicationSection = (props) => {
-    /*
-    in props: array of objects with the same status (interested -> [{job_id, job_title, company, job_posting, status}])   
-    */
 
     const listOfApplications = [];
     const copy = [...props.list];
@@ -14,9 +11,10 @@ const ApplicationSection = (props) => {
                       jobTitle = {`${el.job_title}`}
                       company = {`${el.company}`}
                       jobPosting = {`${el.job_posting}`}
-                      status = {`${status}`} 
+                      status = {`${el.status}`} 
                       action = {props.action}
-                      list={props.list} />)
+                      list={props.list} 
+                      setActiveAppBox={props.setActiveAppBox}/>)
     })
 
     return (

@@ -14,7 +14,7 @@ const ApplicationSection = (props) => {
                       jobTitle = {`${el.job_title}`}
                       company = {`${el.company}`}
                       jobPosting = {`${el.job_posting}`}
-                      status = {`${status}`} 
+                      status = {`${el.status}`} 
                       action = {props.action}
                       list={props.list} 
                       setActiveAppBox={props.setActiveAppBox}/>)

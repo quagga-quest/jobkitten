@@ -8,13 +8,22 @@ const ApplicationBox = (props) => {
     function clickBox(e){
         e.preventDefault;
         props.setActiveAppBox(props.jobId)
-        console.log('job id', props.jobId)
-        // props.status ? history.push(`jobs/${props.jobId}`);
+        props.status === 'interview' ? history.push(`intdetails/${props.jobId}`) : history.push(`appdetails/${props.jobId}`)
         // switch(props.status) {
-        //     case ('interested' || 'inPropgress' || 'completed') {
-        //         history.push(`jobs/${props.jobId}`)
-        //     }
+        //     case 'interested' :
+        //         history.push(`appdetails/${props.jobId}`)
+        //     case 'inProgress' :
+        //         history.push(`appdetails/${props.jobId}`)
+        //     case 'completed' :
+        //         history.push(`appdetails/${props.jobId}`)
+        //     case 'interview' :
+        //         history.push(`intdetails/${props.jobId}`)
+        //     case 'rejected' : 
+        //         history.push(`appdetails/${props.jobId}`)
+        
         // }
+
+     
     }
   
     function deleteBox(e){

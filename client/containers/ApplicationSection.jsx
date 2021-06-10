@@ -5,7 +5,7 @@ const ApplicationSection = (props) => {
     /*
     in props: array of objects with the same status (interested -> [{job_id, job_title, company, job_posting, status}])   
     */
-
+    // console.log('history in app section', props.history)
     const listOfApplications = [];
     const copy = [...props.list];
     copy.forEach(el => {
@@ -14,9 +14,10 @@ const ApplicationSection = (props) => {
                       jobTitle = {`${el.job_title}`}
                       company = {`${el.company}`}
                       jobPosting = {`${el.job_posting}`}
-                      status = {`${status}`} 
+                      status = {`${el.status}`} 
                       action = {props.action}
-                      list={props.list} />)
+                      list={props.list} 
+                      setActiveAppBox={props.setActiveAppBox}/>)
     })
 
     return (

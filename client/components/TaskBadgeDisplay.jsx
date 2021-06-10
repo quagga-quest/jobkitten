@@ -1,11 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import images from '../assets/images';
 
 
 const TaskBadgeDisplay = (props) => {
 
-  // props needed:
-  // app status
   const randomNum = Math.floor(Math.random()*22);
 
   const incompleteView = () => {
@@ -31,11 +29,20 @@ const TaskBadgeDisplay = (props) => {
     )
   }
 
+  let statusCheck;
   const incompleteArr = props.incomplete;
+
+  // useEffect(() => {
+  //   const incompleteArr = props.incomplete;
+  //   statusCheck = incompleteArr.includes(props.jobDetails.status)
+  //   console.log('status boolean', statusCheck);
+  //   return statusCheck
+  // }, [jobDetails])
+  
 
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-      { incompleteArr.includes(props.appStatus)  ? (
+      { incompleteArr.includes(props.jobDetails.status)  ? (
         incompleteView()
       ) : (
         completeView()

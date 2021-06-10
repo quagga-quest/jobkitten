@@ -3,26 +3,8 @@ import TaskBadgeDisplay from '../components/TaskBadgeDisplay.jsx';
 import TaskContainer from './TaskContainer.jsx';
 
 const ApplicationDetails = (props) => {
-  // need to pass down jobID, jobName, jobCompany as props from the dashboard view
-  const [taskStatus, setTaskStatus] = useState({
-    // reachout_out: null,
-    // resume_link: "https://www.fun.com",
-    // cover_letter_link: null,
-    // follow_up: null,
-    // submit_application: null
-  });
-  const [appStatus, setAppStatus] = useState("completed");
-  const [jobDetails, setJobDetails] = useState({
-    job_title: "Fullstack Engineer",
-    company: "Google"
-  })
-  // statuses
-  // interested
-  // in progress
-  // completed
-  // interview
-  // rejected
-  // hired
+  const [taskStatus, setTaskStatus] = useState({});
+  const [jobDetails, setJobDetails] = useState({});
 
   // initial fetch to update task status with user info from DB
   useEffect(() => {
@@ -30,16 +12,25 @@ const ApplicationDetails = (props) => {
     .then((res) => {
       return res.json();
     }).then((res) => {
-      console.log('res json', res);
+      // console.log('res json', res);
       const statusObj = {
         reach_out: res.reach_out,
         resume_link: res.resume_link,
-        cover_letter: res.cover_letter_link,
+        cover_letter_link: res.cover_letter_link,
         follow_up: res.follow_up,
-        submit_application: res.submit_application 
+        submit_application: res.submit_application,
       };
-      setTaskStatus(statusObj);
-      console.log('new statusObj', statusObj);
+      setTaskStatus({...statusObj});
+      
+      const jobDetailsObj = {
+        job_id: res.job_id,
+        status: res.status,
+        job_title: res.job_title,
+        company: res.company
+      };
+      setJobDetails({...jobDetailsObj});
+      console.log('new statusObj', taskStatus);
+      console.log('jobDetails', jobDetails);
     }).catch((e) => console.error(e))
   }, []);
 
@@ -54,21 +45,26 @@ const ApplicationDetails = (props) => {
 
     // post request to update task upon submission
     const bodyData = {
-      job_id: props.job_id,
-      updateField: event.target.id,
-      newValue: inputData
+      field: taskName,
+      value: inputData
     };
-    console.log('bodyData', bodyData);
 
-    // const requestOptions = {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(inputData)
-    // }
 
-    // fetch('/jobs/update/id', requestOptions)
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bodyData)
+    }
+
+    fetch(`http://localhost:3333/jobs/update/${props.activeAppBox}`, requestOptions)
+    .then((res) => {
+      return res.json();
+    }).then((res) => {
+      // console.log('res json', res);
+
+    }).catch((e) => console.error(e))
 
   }
 
@@ -79,6 +75,38 @@ const ApplicationDetails = (props) => {
     const inputData = event.target.checkBox.value;
     taskCopy[taskName] = inputData;
     setTaskStatus({...taskCopy});
+
+    // post request to update task upon submission
+    const bodyData = {
+      field: taskName,
+      value: inputData
+    };
+
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bodyData)
+    }
+
+    fetch(`http://localhost:3333/jobs/update/${props.activeAppBox}`, requestOptions)
+    .then((res) => {
+      return res.json();
+    }).then((res) => {
+      // console.log('res json', res);
+      if(jobDetails.status !== 'interested' && res.status !== jobDetails.status) {
+        const jobDetailsObj = {
+          job_id: res.job_id,
+          status: res.status,
+          job_title: res.job_title,
+          company: res.company
+        };
+        setJobDetails(jobDetailsObj);
+      }
+
+    }).catch((e) => console.error(e))
+
   }
 
   // TBD: useEffect that listens for taskStatus changing state and executes a post request to update 
@@ -89,7 +117,7 @@ const ApplicationDetails = (props) => {
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: "center", height: "100%", marginBottom: "30px"}}>
       <h1>{jobDetails.company}: {jobDetails.job_title}</h1>
-      <TaskBadgeDisplay userId={props.userId} activeAppBox={props.activeAppBox} appStatus={appStatus} incomplete={["interested", "in progress"]}/>
+      <TaskBadgeDisplay userId={props.userId} activeAppBox={props.activeAppBox} jobDetails={jobDetails} incomplete={["interested", "inProgress"]}/>
       <TaskContainer userId={props.userId} activeAppBox={props.activeAppBox} taskStatus={taskStatus} setTaskStatus={setTaskStatus} handleLink={handleLink} handleBoolean={handleBoolean} />
     </div>
   )

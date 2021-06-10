@@ -4,12 +4,9 @@ import {Button, Checkbox, TextField} from '@material-ui/core';
 
 
 const TaskItem = (props) => {
-  // props needed:
-  // task name
-  // task status -> null or not null
   
   const taskNames = {
-    reachout_out: 'Connect with Someone at the Company',
+    reach_out: 'Connect with Someone at the Company',
     resume_link: 'Update Resume',
     cover_letter_link: 'Write Cover Letter',
     follow_up: "Send Follow-Up to the Contact",
@@ -21,6 +18,7 @@ const TaskItem = (props) => {
     interview_follow_up: 'Interview Follow-up'
   }
 
+
   const linkTypes = ['resume_link', 'cover_letter_link'];
 
 
@@ -28,16 +26,14 @@ const TaskItem = (props) => {
   const incompleteView = () => {
     return (
       <div style={{marginLeft: "40px", marginBottom: "20px"}}>
-      { linkTypes.includes(props.name) ? (
-        <form id={props.name} onSubmit={()=>props.handleLink(event)}>
-          {/* <input id="inputData" type="text"></input> */}
+      { linkTypes.includes(props.taskName) ? (
+        <form id={props.taskName} onSubmit={()=>props.handleLink(event)}>
           <TextField id="inputData" label="Link to Document" variant="outlined" />
           <Button type="submit" variant="contained" color="primary" style={{marginLeft: "10px"}}>Submit</Button>
         </form>
       ) : (
-        <form id={props.name} onSubmit={()=>props.handleBoolean(event)}>
-          {/* <input type="checkbox" id="checkBox" value="true"></input> */}
-          <Checkbox color="secondary" id="checkBox" value="true"></Checkbox>
+        <form id={props.taskName} onSubmit={()=>props.handleBoolean(event)}>
+          <Checkbox color="secondary" id="checkBox" value={true}></Checkbox>
           <Button type="submit" variant="contained" color="secondary" style={{marginLeft: "10px"}}>Complete</Button>
         </form>
       )}
@@ -64,7 +60,7 @@ const TaskItem = (props) => {
         <div style={{marginLeft: "10px"}}>
           <img src="../assets/arrow-icon.png" style={{height: "20px", width: "20px"}}/>
         </div>
-        <h2 style={{marginLeft: "10px", marginRight: "20px"}}>{taskNames[props.name]}</h2>
+        <h2 style={{marginLeft: "10px", marginRight: "20px"}}>{taskNames[props.taskName]}</h2>
       </div>
       {/* <div> */}
       { !props.status ? (

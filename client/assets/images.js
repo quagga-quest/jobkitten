@@ -1,6 +1,6 @@
 const welcome = {
     0: "https://drive.google.com/uc?id=1Ym8QqePck_DKpq8an1nSdSmUhHSej9Nw",
-    0: "Welcome! I am Ninja Kitty"
+    1: "I am Ninja Kitty"
 }
 
 const kawaiiFruit = {

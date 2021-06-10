@@ -19,4 +19,10 @@ userController.updateUser = async (req, res) => {
   }
 };
 
+
+userController.verifyUser = async (req, res) => {
+
+  
+}
+
 module.exports = userController;

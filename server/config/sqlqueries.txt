@@ -10,19 +10,17 @@ CREATE TABLE Users (
     display_name_1 varchar(255),
     oauth_id varchar(255),
     sticker_value int,
-    apple_value int,
-    kiwi_value int,
-    lemon_value int
+    fruit_value int
 )
 
 
 CREATE TABLE Jobs (
     job_id SERIAL UNIQUE PRIMARY KEY,
-    user_id FOREIGN KEY REFERENCES Users (user_id),
+    user_id int REFERENCES Users (user_id),
     status varchar(255),
     job_title varchar(255),
     company varchar(255),
-    reachout_out BOOL,
+    reach_out BOOL,
     resume_link varchar(255),
     cover_letter_link varchar(255),
     follow_up BOOL,
@@ -37,5 +35,18 @@ CREATE TABLE Jobs (
 CREATE TABLE Achievements (
 achievement_type varchar(255),
 user_id FOREIGN KEY REFERENCES Users (user_id),
-
 )
+
+INSERT INTO Jobs (user_id, status, job_title, company, reach_out, resume_link, cover_letter_link, follow_up, submit_application, phone_screen, technical_interview, on_site, take_home, interview_follow_up) VALUES ('1', 'inProgress', 'Software Engineer', 'Uber', 'true', 'https://drive.google.com/file/d/1Pmh1YaW4Ea5c-XyHvrHCQSecpcqelFUl/view?usp=sharing', 'https://drive.google.com/file/d/1Pmh1YaW4Ea5c-XyHvrHCQSecpcqelFUl/view?usp=sharing', 'false', 'false', 'true', 'true', 'true', 'true','false')
+
+INSERT INTO Jobs (user_id, status, job_title, company, reach_out, resume_link, cover_letter_link, follow_up, submit_application, phone_screen, technical_interview, on_site, take_home, interview_follow_up) VALUES ('2', 'interview', 'Software Engineer', 'Uber', 'true', 'https://drive.google.com/file/d/1Pmh1YaW4Ea5c-XyHvrHCQSecpcqelFUl/view?usp=sharing', 'https://drive.google.com/file/d/1Pmh1YaW4Ea5c-XyHvrHCQSecpcqelFUl/view?usp=sharing', 'true', 'true', 'true', 'true', 'true', 'true','true')
+
+INSERT INTO Jobs (user_id, status, job_title, company, reach_out, resume_link, cover_letter_link, follow_up, submit_application, phone_screen, technical_interview, on_site, take_home, interview_follow_up) VALUES ('1', 'interested', 'Frontend Software Engineer', 'Tesla', 'false', 'https://drive.google.com/file/d/1Pmh1YaW4Ea5c-XyHvrHCQSecpcqelFUl/view?usp=sharing', 'https://drive.google.com/file/d/1Pmh1YaW4Ea5c-XyHvrHCQSecpcqelFUl/view?usp=sharing', 'false', 'false', 'false', 'false', 'false', 'false','false')
+
+INSERT INTO Jobs (user_id, status, job_title, company, reach_out, resume_link, cover_letter_link, follow_up, submit_application, phone_screen, technical_interview, on_site, take_home, interview_follow_up) VALUES ('1', 'interested', 'Kafka Engineer', 'DoorDash', 'false', 'https://drive.google.com/file/d/1Pmh1YaW4Ea5c-XyHvrHCQSecpcqelFUl/view?usp=sharing', 'https://drive.google.com/file/d/1Pmh1YaW4Ea5c-XyHvrHCQSecpcqelFUl/view?usp=sharing', 'false', 'false', 'false', 'false', 'false', 'false','false')
+
+INSERT INTO Jobs (user_id, status, job_title, company, reach_out, resume_link, cover_letter_link, follow_up, submit_application, phone_screen, technical_interview, on_site, take_home, interview_follow_up) VALUES ('1', 'rejected', 'Senior Software Engineer', 'SpaceX', 'true', 'https://drive.google.com/file/d/1Pmh1YaW4Ea5c-XyHvrHCQSecpcqelFUl/view?usp=sharing', 'https://drive.google.com/file/d/1Pmh1YaW4Ea5c-XyHvrHCQSecpcqelFUl/view?usp=sharing', 'true', 'true', 'true', 'true', 'true', 'true','true')
+
+INSERT INTO Jobs (user_id, status, job_title, company, reach_out, resume_link, cover_letter_link, follow_up, submit_application, phone_screen, technical_interview, on_site, take_home, interview_follow_up) VALUES ('2', 'inProgress', 'Software Engineer', 'Apple', 'true', 'https://drive.google.com/file/d/1Pmh1YaW4Ea5c-XyHvrHCQSecpcqelFUl/view?usp=sharing', 'https://drive.google.com/file/d/1Pmh1YaW4Ea5c-XyHvrHCQSecpcqelFUl/view?usp=sharing', 'false', 'false', 'true', 'true', 'true', 'true','false')
+
+INSERT INTO Jobs (user_id, status, job_title, company, reach_out, resume_link, cover_letter_link, follow_up, submit_application, phone_screen, technical_interview, on_site, take_home, interview_follow_up) VALUES ('2', 'rejected', 'Software Engineer', 'pets.com', 'true', 'https://drive.google.com/file/d/1Pmh1YaW4Ea5c-XyHvrHCQSecpcqelFUl/view?usp=sharing', 'https://drive.google.com/file/d/1Pmh1YaW4Ea5c-XyHvrHCQSecpcqelFUl/view?usp=sharing', 'true', 'true', 'true', 'true', 'true', 'true','true')

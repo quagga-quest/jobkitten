@@ -3,14 +3,10 @@ const db = require('../models/dbModel');
 
 // middleware to retrieve all existing jobs from database and send back to client as JSON
 jobsController.getAllJobs = async (req, res, next) => {
-  // adjust these as necessary
-  // const user_id = [ req.body.user_id ];
-  const user_id = req.params.user_id;
-  const getJobsQuery = `SELECT * FROM Jobs WHERE user_id = ${user_id}`;
+  const user_id = [ req.params.user_id ];
+  const getJobsQuery = `SELECT * FROM Jobs WHERE user_id = $1`;
   try {
-    // res.locals.response = await db.query(getJobsQuery);
-    // values returned from db query get stored in the property 'rows' of response, therefore we need those rows in res.locals.response
-    const jobs = await db.query(getJobsQuery);
+    const jobs = await db.query(getJobsQuery, user_id);
     res.locals.response = jobs.rows;
     return next();
   } catch (error) {
@@ -19,29 +15,31 @@ jobsController.getAllJobs = async (req, res, next) => {
   }
 };
 
+// middleware to retrieve one job from database when it's clicked
 jobsController.getOneJob = async (req, res, next) => {
   const job_id = [ req.params.job_id ];
-  const getJobQuery = '';
+  const getJobQuery = 'SELECT * FROM Jobs WHERE job_id = $1';
 
-  // return entire job requested
+  try {
+    const job = await db.query(getJobQuery, job_id);
+    res.locals.response = job.rows;
+    return next();
+  } catch (error) {
+    console.log(error.stack);
+    return next(error);
+  }
 };
 
 // middleware to create new job in database
 jobsController.postJob = async (req, res, next) => {
   const { job_title, company, job_posting, status } = req.body;
-  const bodyProps = [job_title, company, job_posting, status];
-
-  const postJobQuery = `INSERT INTO Jobs (user_id, job_title, company, job_posting, status) VALUES (${req.params.user_id}, $1, $2, $3, $4) RETURNING job_id;`
+  const { user_id } = req.params;
+  const bodyProps = [ user_id, job_title, company, job_posting, status ];
+  const postJobQuery = `INSERT INTO Jobs (user_id, job_title, company, job_posting, status) VALUES ($1, $2, $3, $4, $5) RETURNING job_id;`
   
   try {
-    
-    // return the new job as the response; fill in job_posting below
-    // res.locals.response = await db.query('SELECT * FROM Jobs WHERE Jobs.job_posting = ');
-    
     const newJob = await db.query(postJobQuery, bodyProps);
-    res.locals.job = newJob.rows;
-
-    // res.locals.numberOfJobs 
+    res.locals.response = newJob.rows;
     return next();
   } catch (error) {
     console.log(error.stack);
@@ -52,17 +50,18 @@ jobsController.postJob = async (req, res, next) => {
 // middleware to update an existing job in database
 jobsController.updateJob = async (req, res, next) => {
   // fill these in once we have a better sense of what we need
-  const updatingJob = [ req.params.job_id ];
-  // do something w/ the task to be updated, from req.body, here -- will need both key (task column) AND value (actual value for updating)
-  const updateJobQuery = '';
+  const job_id = req.params.job_id;
+  const updateField = req.body.field;
+  const newValue = req.body.value;
+  const updateProps = [ job_id, updateField, newValue ]
+  const updateJobQuery = 'UPDATE Jobs SET $2 = $3 WHERE job_id = $1 RETURNING *';
 
   // will need logic here to figure out which attribute is being updated
   // likely putting existing fields in req.params, with new values in req.body
 
   try {
-    await db.query(updateJobQuery, updatingJob);
-    // this should likely be the new version of the job that's been updated
-    res.locals.response = await db.query();
+    const updatedJob = await db.query(updateJobQuery, updateProps);
+    res.locals.response = updatedJob.rows;
     return next();
   } catch (error) {
     console.log(error.stack);
@@ -72,16 +71,46 @@ jobsController.updateJob = async (req, res, next) => {
 
 jobsController.updateJobStatus = async (req, res, next) => {
   // check to see if job's status needs to be changed, based on task updates above
+  let { job_id, status, reachout_out, resume_link, cover_letter_link, follow_up, submit_application, phone_screen, technical_interview, on_site, take_home, interview_follow_up } = res.locals.response;
+
+  let newStatus = status;
+
+  switch(status) {
+    case 'interested':
+      if (reachout_out || resume_link || cover_letter_link || follow_up) newStatus = 'inProgress';
+      break;
+    case 'inProgress':
+      if (submit_application) newStatus = 'completed';
+      break;
+    case 'completed':
+      if (phone_screen || technical_interview || on_site || take_home) newStatus = 'interview';
+      break;
+    default:
+      break;
+  };
+
+  if (newStatus !== status) {
+    const updateStatusProps = [ job_id, newStatus ];
+    const updateStatusQuery = 'UPDATE Jobs SET status = $2 WHERE job_id = $1 RETURNING *';
+
+    try {
+      const updatedStatus = await db.query(updateStatusQuery, updateStatusProps);
+      res.locals.response = updatedStatus.rows;
+      return next();
+    } catch (error) {
+      console.log(error.stack);
+      return next(error);
+    }
+  } else return next();
 };
 
 // middleware to delete an existing job based on job_id
 jobsController.deleteJob = async (req, res, next) => {
-  // adjust these as necessary
-  // const job_id = [ req.params.job_id ];
-  const deleteJobQuery = `DELETE FROM Jobs WHERE Jobs.job_id = ${req.params.job_id}`;
+  const job_id = [ req.params.job_id ];
+  const deleteJobQuery = `DELETE FROM Jobs WHERE Jobs.job_id = $1`;
 
   try {
-    await db.query(deleteJobQuery);
+    await db.query(deleteJobQuery, job_id);
     res.locals.response = `Deleted job ${req.params.job_id}`;
   } catch (error) {
     console.log(error.stack);

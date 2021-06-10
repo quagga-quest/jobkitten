@@ -7,6 +7,7 @@ const NewApplication = (props) => {
       const company = document.getElementById('input-company').value;
       const link = document.getElementById('input-link').value;
       const body = {
+          user_id: props.user_id,
           job_title: title,
           company: company,
           job_posting: link,

@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import {Button, TextField} from '@material-ui/core';
 
 
+
 const ApplicationBox = (props) => {
     const history = useHistory();
 
@@ -33,15 +34,36 @@ const ApplicationBox = (props) => {
           .catch((e) => console.log(e))
     }
 
+    function setInterview(e) {
+        e.preventDefault();
+        fetch(`http://localhost:3333/jobs/update/${props.jobId}`, {
+            method: 'PUT',
+            mode: 'cors',
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({
+                field: 'status',
+                value: 'interview'
+            })
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch((e) => console.error(e))
+    }
+
+
     return (
     <a href = '#' id='redirect' onClick={(e) => clickBox(e)}>
-        <div className = "app-box">
+        <div className = "app-box" >
             <Button type="button" id="button-delete" onClick={(e) => deleteBox(e)}>X</Button>
-            <ul>
-                <li>Job title: {props.jobTitle}</li>
-                <li>Company: {props.company}</li>
-                <li>Posting: <a href={`${props.jobPosting}`}>click</a></li>
+            <ul id = 'app-box-ul'>
+                <li><b>Job title: </b>{props.jobTitle}</li>
+                <li><b>Company: </b>{props.company}</li>
+                <li><b>Posting: </b><a href={`${props.jobPosting}`}>click</a></li>
             </ul>
+            {
+                props.status === 'completed' &&
+                <button type="button" id="button-interview" onClick={(e) => setInterview(e)}>Interview</button>
+            }
         </div>
     </a>
     )

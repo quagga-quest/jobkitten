@@ -36,7 +36,7 @@ const Dashboard = (props) => {
     return (
         <div id='dashboard'>
             <div className='application-section' id='dashboard-section-three'>
-              <h4>Interview stage</h4>
+              <h4 id='test-header'>Interview stage</h4>
               <ApplicationSection 
               id={1} 
               list={interview} 

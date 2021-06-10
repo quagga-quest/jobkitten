@@ -49,15 +49,18 @@ jobsController.postJob = async (req, res, next) => {
 
 // middleware to update an existing job in database
 jobsController.updateJob = async (req, res, next) => {
+  console.log(req.body);
   const job_id = req.params.job_id;
   const updateField = req.body.field;
   const newValue = req.body.value;
   const updateProps = [ job_id, updateField, newValue ]
-  const updateJobQuery = 'UPDATE Jobs SET $2 = $3 WHERE job_id = $1 RETURNING *';
+  console.log(updateProps)
+  const updateJobQuery = `UPDATE Jobs SET ${updateField}='${newValue}' WHERE job_id = ${job_id} RETURNING *`;
 
   try {
-    const updatedJob = await db.query(updateJobQuery, updateProps);
+    const updatedJob = await db.query(updateJobQuery);
     res.locals.response = updatedJob.rows;
+    console.log('THESE ARE ROWS', res.locals.response)
     return next();
   } catch (error) {
     console.log(error.stack);

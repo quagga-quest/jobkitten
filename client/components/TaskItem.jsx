@@ -1,4 +1,6 @@
 import React from 'react';
+import images from '../assets/images';
+
 
 const TaskItem = (props) => {
   // props needed:

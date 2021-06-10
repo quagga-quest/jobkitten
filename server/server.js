@@ -4,7 +4,7 @@ const path = require('path');
 const PORT = 3333;
 const app = express();
 const passport = require("passport");
-const keys = require("./config/keys");
+require('dotenv').config();
 const passportSetup = require('./config/passport-setup');
 const cookieSession = require('cookie-session');
 const authRoutes = require('./routes/authRoutes.js');
@@ -12,7 +12,7 @@ const authRoutes = require('./routes/authRoutes.js');
 
 app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
-    keys: [keys.session.cookieKey]
+    keys: [process.env.COOKIE_KEY]
   }))
 
   //initialize passport

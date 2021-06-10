@@ -8,6 +8,11 @@ const InterviewDetails = (props) => {
   const [intTaskStatus, setIntTaskStatus] = useState({});
 
   const [appStatus, setAppStatus] = useState("in progress");
+  const [jobDetails, setJobDetails] = useState({
+    job_title: "Fullstack Engineer",
+    company: "Google"
+  })
+  
   // statuses
   // interested
   // in progress
@@ -27,15 +32,8 @@ const InterviewDetails = (props) => {
   // update taskStatus state based on task form submissions (this is invoked in TaskItem)
   const handleAdd = event => {
     event.preventDefault();
-    const taskDisplay = {
-      phone_screen: 'Recruiter Phone Screen',
-      technical_interview: 'Technical Phone Interview',
-      take_home: 'Take-Home Assessment',
-      on_site: 'On-Site Interview',
-      interview_follow_up: 'Interview Follow-up'
-    }
     const taskCopy = intTaskStatus;
-    const taskName = taskDisplay[event.target.interviewSteps.value];
+    const taskName = event.target.interviewSteps.value;
     taskCopy[taskName] = 0;
     setIntTaskStatus({...taskCopy});
 
@@ -55,14 +53,14 @@ const InterviewDetails = (props) => {
   }
 
    // update taskStatus state based on task form submissions (this is invoked in TaskItem)
-   const handleSubmit = event => {
+   const handleBoolean = event => {
     event.preventDefault();
     const taskCopy = intTaskStatus;
     const taskName = event.target.id;
-    const inputData = event.target.inputData.value;
+    const inputData = event.target.checkBox.value;
     taskCopy[taskName] = inputData;
     setIntTaskStatus({...taskCopy});
-
+  
     // post request to update task upon submission
     const bodyData = {
       [taskName]: inputData 
@@ -85,11 +83,10 @@ const InterviewDetails = (props) => {
   // }, [taskStatus]);
 
   return (
-    <div style={{display: "flex", flexDirection: "column", height: "100%"}}>
-      <h1>Job Title</h1>
-      <h3>Company</h3>
+    <div style={{display: "flex", flexDirection: "column", alignItems: "center", height: "100%"}}>
+      <h1>{jobDetails.company}: {jobDetails.job_title}</h1>
       <TaskBadgeDisplay appStatus={appStatus} incomplete={["interested", "in progress", "completed", "interview"]}/>
-      <TaskContainer taskStatus={intTaskStatus} setTaskStatus={setIntTaskStatus} handleSubmit={handleSubmit}/>
+      <TaskContainer taskStatus={intTaskStatus} setTaskStatus={setIntTaskStatus} handleBoolean={handleBoolean}/>
       <AddInterviewTask handleAdd={handleAdd} />
     </div>
   )

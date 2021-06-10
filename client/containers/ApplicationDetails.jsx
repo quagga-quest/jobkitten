@@ -5,14 +5,17 @@ import TaskContainer from './TaskContainer.jsx';
 const ApplicationDetails = (props) => {
   // need to pass down jobID, jobName, jobCompany as props from the dashboard view
   const [taskStatus, setTaskStatus] = useState({
-    task1: null,
-    task2: "www.fun.com",
-    task3: true,
-    task4: null,
-    task5: null
+    reachout_out: null,
+    resume_link: "https://www.fun.com",
+    cover_letter_link: null,
+    follow_up: null,
+    submit_application: null
   });
-
-  const [appStatus, setAppStatus] = useState("in progress");
+  const [appStatus, setAppStatus] = useState("completed");
+  const [jobDetails, setJobDetails] = useState({
+    job_title: "Fullstack Engineer",
+    company: "Google"
+  })
   // statuses
   // interested
   // in progress
@@ -22,7 +25,7 @@ const ApplicationDetails = (props) => {
   // hired
 
   // initial fetch to update task status with user info from DB
-  // fetch('/jobs/xxx')
+  // fetch('/jobs/job_id')
   // .then((res) => {
   //   return res.json();
   // }).then((res) => {
@@ -30,7 +33,7 @@ const ApplicationDetails = (props) => {
   // })
 
   // update taskStatus state based on task form submissions (this is invoked in TaskItem)
-  const handleSubmit = event => {
+  const handleLink = event => {
     event.preventDefault();
     const taskCopy = taskStatus;
     const taskName = event.target.id;
@@ -51,6 +54,18 @@ const ApplicationDetails = (props) => {
     //   },
     //   body: JSON.stringify(inputData)
     // }
+
+    // fetch('/jobs/update/id', requestOptions)
+
+  }
+
+  const handleBoolean = event => {
+    event.preventDefault();
+    const taskCopy = taskStatus;
+    const taskName = event.target.id;
+    const inputData = event.target.checkBox.value;
+    taskCopy[taskName] = inputData;
+    setTaskStatus({...taskCopy});
   }
 
   // TBD: useEffect that listens for taskStatus changing state and executes a post request to update 
@@ -59,11 +74,10 @@ const ApplicationDetails = (props) => {
   // }, [taskStatus]);
 
   return (
-    <div style={{display: "flex", flexDirection: "column", height: "100%"}}>
-      <h1>Job Title</h1>
-      <h3>Company</h3>
+    <div style={{display: "flex", flexDirection: "column", alignItems: "center", height: "100%", marginBottom: "30px"}}>
+      <h1>{jobDetails.company}: {jobDetails.job_title}</h1>
       <TaskBadgeDisplay appStatus={appStatus} incomplete={["interested", "in progress"]}/>
-      <TaskContainer taskStatus={taskStatus} setTaskStatus={setTaskStatus} handleSubmit={handleSubmit} />
+      <TaskContainer taskStatus={taskStatus} setTaskStatus={setTaskStatus} handleLink={handleLink} handleBoolean={handleBoolean} />
     </div>
   )
 }

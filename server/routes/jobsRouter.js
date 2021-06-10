@@ -36,6 +36,7 @@ router.put('/update/:job_id', jobsController.updateJob, jobsController.updateJob
 
 // route handler for removing an existing job
 router.delete('/remove/:job_id', jobsController.deleteJob, (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
   res.status(200).json(res.locals.response);
 });
 

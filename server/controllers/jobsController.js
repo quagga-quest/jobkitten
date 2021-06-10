@@ -49,15 +49,11 @@ jobsController.postJob = async (req, res, next) => {
 
 // middleware to update an existing job in database
 jobsController.updateJob = async (req, res, next) => {
-  // fill these in once we have a better sense of what we need
   const job_id = req.params.job_id;
   const updateField = req.body.field;
   const newValue = req.body.value;
   const updateProps = [ job_id, updateField, newValue ]
   const updateJobQuery = 'UPDATE Jobs SET $2 = $3 WHERE job_id = $1 RETURNING *';
-
-  // will need logic here to figure out which attribute is being updated
-  // likely putting existing fields in req.params, with new values in req.body
 
   try {
     const updatedJob = await db.query(updateJobQuery, updateProps);
@@ -69,8 +65,8 @@ jobsController.updateJob = async (req, res, next) => {
   }
 };
 
+// middleware to update job status, if necessary, after updating a job field
 jobsController.updateJobStatus = async (req, res, next) => {
-  // check to see if job's status needs to be changed, based on task updates above
   let { job_id, status, reachout_out, resume_link, cover_letter_link, follow_up, submit_application, phone_screen, technical_interview, on_site, take_home, interview_follow_up } = res.locals.response;
 
   let newStatus = status;

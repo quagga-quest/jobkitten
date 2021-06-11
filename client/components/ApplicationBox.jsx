@@ -58,7 +58,7 @@ const ApplicationBox = (props) => {
             <ul id = 'app-box-ul'>
                 <li><b>Job title: </b>{props.jobTitle}</li>
                 <li><b>Company: </b>{props.company}</li>
-                <li><b>Posting: </b><a href={`${props.jobPosting}`}>click</a></li>
+                <li><b>Posting: </b><a onClick={(e)=>{ e.stopPropagation()}} href={`${props.jobPosting}`}>click</a></li>
             </ul>
             {
                 props.status === 'completed' &&

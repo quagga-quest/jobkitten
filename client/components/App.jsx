@@ -10,7 +10,7 @@ import AchievementsContainer from '../containers/AchievementsContainer.jsx';
 import Login from './Login.jsx';
 
 const App = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [activeAppBox, setActiveAppBox] = useState();
     const [userId, setUserId] = useState(1);
 
